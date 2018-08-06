@@ -1,0 +1,26 @@
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe.config
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\bin\Debug\WeatherApp.pdb
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csprojResolveAssemblyReference.cache
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Form1.resources
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Properties.Resources.resources
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.cache
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.exe
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.pdb
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sanan\source\repos\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CopyComplete
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe.config
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\bin\Debug\WeatherApp.exe
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\bin\Debug\WeatherApp.pdb
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.dll
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\bin\Debug\Newtonsoft.Json.xml
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csprojAssemblyReference.cache
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.Properties.Resources.resources
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.cache
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.csproj.CopyComplete
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.exe
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.pdb
+\\ITSTEP\students redirection$\Usib_uf00\Desktop\WeatherApp\WeatherApp\obj\Debug\WeatherApp.FormWeatherApp.resources
