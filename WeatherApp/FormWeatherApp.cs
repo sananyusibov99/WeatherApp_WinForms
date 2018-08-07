@@ -72,6 +72,7 @@ namespace WeatherApp
         public void WeatherToday(JObject data, Options options)
         {
             txtResult.Text = "City: " + (string)data["name"] + '\n';
+            txtResult.Text += "Weather description: " + (string)data["weather"][0]["description"] + '\n';
             txtResult.Text = txtResult.Text + "Temperature: " + (string)data["main"]["temp"];
             TemperatureUnits(options);
             txtResult.Text = txtResult.Text + "Minimum temperature: " + (string)data["main"]["temp_min"];
@@ -81,7 +82,6 @@ namespace WeatherApp
             txtResult.Text = txtResult.Text + "Wind speed: " + (string)data["wind"]["speed"];
             SpeedUnits(options);
             txtResult.Text = txtResult.Text + "Cloudiness: " + (string)data["clouds"]["all"] + "%\n";
-
             txtResult.Text = txtResult.Text + "Pressure: " + (string)data["main"]["pressure"] + " hPa\n";
             txtResult.Text = txtResult.Text + "Humidity: " + (string)data["main"]["humidity"] + "%\n";
         }
@@ -109,8 +109,9 @@ namespace WeatherApp
             TemperatureUnits(options);
             txtResult.Text += "\n";
 
-            for (int i = 6; i < 13; i++)
+            for (int i = 5; i < 13; i++)
             {
+                txtResult.Text = txtResult.Text + "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
                 txtResult.Text = txtResult.Text + "Temperature: " + (string)data["list"][i]["main"]["temp"];
                 TemperatureUnits(options);
                 txtResult.Text = txtResult.Text + "Wind speed: " + (string)data["list"][i]["wind"]["speed"];
@@ -160,6 +161,7 @@ namespace WeatherApp
                 } while (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}");
                 //==
 
+                txtResult.Text = txtResult.Text + "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
                 txtResult.Text += "Minimum Temperature: " + Math.Round(min / iter,2);
                 TemperatureUnits(options);
                 txtResult.Text += "Maximum Temperature: " + Math.Round(max / iter,2);
@@ -195,7 +197,7 @@ namespace WeatherApp
                     if (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}")
                     {
                         txtResult.Text += label1.Text + "\n";
-
+                        txtResult.Text = txtResult.Text + "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
                         txtResult.Text = txtResult.Text + "Temperature: " + (string)data["list"][index]["main"]["temp"];
                         TemperatureUnits(options);
                         txtResult.Text = txtResult.Text + "Wind speed: " + (string)data["list"][index]["wind"]["speed"];
