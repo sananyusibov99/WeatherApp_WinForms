@@ -48,15 +48,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormWeatherApp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormWeatherApp.Designer.cs">
       <DependentUpon>FormWeatherApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Languages.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormWeatherApp.resx">
       <DependentUpon>FormWeatherApp.cs</DependentUpon>
     </EmbeddedResource>
