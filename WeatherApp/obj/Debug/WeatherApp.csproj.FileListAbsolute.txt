@@ -37,3 +37,4 @@ C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\Weather
 C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.csproj.CopyComplete
 C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.exe
 C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.pdb
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.FormSettings.resources

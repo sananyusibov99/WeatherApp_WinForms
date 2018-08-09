@@ -17,6 +17,8 @@ namespace WeatherApp
         public static int index = 0, test = 0;
         static string sub = null;
         static int iter = 0;
+        static List<string> texts = new List<string>();
+
 
         public FormWeatherApp()
         {
@@ -284,6 +286,65 @@ namespace WeatherApp
                 }
                 else txtResult.Text = "Enter city name!";
             }
+        }
+
+        public void TextChange(List<string> texts)
+        {
+            settingsToolStripMenuItem.Text = texts[0];
+            lblEnterCity.Text = texts[1];
+            btnLocation.Text = texts[2];
+            btnToday.Text = texts[3];
+            btnTomorrow.Text = texts[4];
+            btnFiveDays.Text = texts[5];
+            btnFiveDaysH.Text = texts[6];
+            radioButtonCelsius.Text = texts[7];
+            radioButtonFahrenheit.Text = texts[8];
+            radioButtonKelvin.Text = texts[9];
+        }
+
+        public void WebClient()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+
+                texts = new List<string>
+                {
+                    settingsToolStripMenuItem.Text,
+                    lblEnterCity.Text,
+                    btnLocation.Text,
+                    btnToday.Text,
+                    btnTomorrow.Text,
+                    btnFiveDays.Text,
+                    btnFiveDaysH.Text,
+                    radioButtonCelsius.Text,
+                    radioButtonFahrenheit.Text,
+                    radioButtonKelvin.Text
+                };
+
+
+                for (int item = 0; item < 8; item++)
+                {
+                    var result = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={texts[item]}&lang={Languages.Language}");
+                    var data = JObject.Parse(result);
+                    texts[item] = (string)data["text"][0];
+                }
+
+                TextChange(texts);
+            }
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var wnd = new FormSettings();
+            var res = wnd.ShowDialog();
+
+            WebClient();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void btnFiveDays_By_Hours_Click(object sender, EventArgs e)
