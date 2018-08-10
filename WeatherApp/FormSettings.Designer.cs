@@ -44,18 +44,17 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.comboBox1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnSet, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnExit, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnSet, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnExit, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 140);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(274, 99);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -82,10 +81,10 @@
             // 
             // btnSet
             // 
-            this.btnSet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSet.Location = new System.Drawing.Point(3, 93);
+            this.btnSet.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSet.Location = new System.Drawing.Point(18, 71);
             this.btnSet.Name = "btnSet";
-            this.btnSet.Size = new System.Drawing.Size(131, 24);
+            this.btnSet.Size = new System.Drawing.Size(100, 25);
             this.btnSet.TabIndex = 2;
             this.btnSet.Text = "Set Up";
             this.btnSet.UseVisualStyleBackColor = true;
@@ -93,10 +92,10 @@
             // 
             // btnExit
             // 
-            this.btnExit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnExit.Location = new System.Drawing.Point(140, 93);
+            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnExit.Location = new System.Drawing.Point(155, 71);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(131, 24);
+            this.btnExit.Size = new System.Drawing.Size(100, 25);
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -106,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 140);
+            this.ClientSize = new System.Drawing.Size(274, 99);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
