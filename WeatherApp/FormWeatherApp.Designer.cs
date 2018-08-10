@@ -67,7 +67,7 @@
             this.btnToday.TabIndex = 1;
             this.btnToday.Text = "Today";
             this.btnToday.UseVisualStyleBackColor = true;
-            this.btnToday.Click += new System.EventHandler(this.btnTodayWeather_Click);
+            this.btnToday.Click += new System.EventHandler(this.BtnTodayWeather_Click);
             // 
             // txtResult
             // 
@@ -88,7 +88,7 @@
             this.btnTomorrow.TabIndex = 1;
             this.btnTomorrow.Text = "Tomorrow";
             this.btnTomorrow.UseVisualStyleBackColor = true;
-            this.btnTomorrow.Click += new System.EventHandler(this.btnTomorrowWeather_Click);
+            this.btnTomorrow.Click += new System.EventHandler(this.BtnTomorrowWeather_Click);
             // 
             // btnFiveDaysH
             // 
@@ -99,7 +99,7 @@
             this.btnFiveDaysH.TabIndex = 1;
             this.btnFiveDaysH.Text = "5 Days By Hours";
             this.btnFiveDaysH.UseVisualStyleBackColor = true;
-            this.btnFiveDaysH.Click += new System.EventHandler(this.btnFiveDays_By_Hours_Click);
+            this.btnFiveDaysH.Click += new System.EventHandler(this.BtnFiveDays_By_Hours_Click);
             // 
             // radioButtonFahrenheit
             // 
@@ -145,7 +145,7 @@
             this.btnFiveDays.TabIndex = 5;
             this.btnFiveDays.Text = "5 Days";
             this.btnFiveDays.UseVisualStyleBackColor = true;
-            this.btnFiveDays.Click += new System.EventHandler(this.btnFiveDays_Click);
+            this.btnFiveDays.Click += new System.EventHandler(this.BtnFiveDays_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -200,7 +200,7 @@
             this.btnLocation.TabIndex = 7;
             this.btnLocation.Text = "Determine Location";
             this.btnLocation.UseVisualStyleBackColor = true;
-            this.btnLocation.Click += new System.EventHandler(this.btnLocation_Click);
+            this.btnLocation.Click += new System.EventHandler(this.BtnLocation_Click);
             // 
             // label1
             // 
@@ -229,7 +229,7 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.settingsToolStripMenuItem.Text = "Settings...";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -237,7 +237,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // FormWeatherApp
             // 

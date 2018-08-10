@@ -60,6 +60,9 @@
     <Compile Include="FormWeatherApp.Designer.cs">
       <DependentUpon>FormWeatherApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormWeatherAppTranslation.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Languages.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />

@@ -15,13 +15,40 @@ namespace WeatherApp
     public partial class FormSettings : Form
     {
         Dictionary<string, string> languages = new Dictionary<string, string>();
+        static List<string> texts = new List<string>();
+
 
         public FormSettings()
         {
             InitializeComponent();
+
             using (WebClient wc = new WebClient())
             {
                 wc.Encoding = Encoding.UTF8;
+
+                try
+                {
+                    texts = new List<string>
+                    {
+                    label1.Text,
+                    btnSet.Text,
+                    btnExit.Text
+                    };
+
+                    for (int item = 0; item < 3; item++)
+                    {
+                        var res = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={texts[item]}&lang={Languages.Language}");
+                        var dat = JObject.Parse(res);
+                        texts[item] = (string)dat["text"][0];
+                    }
+
+                    label1.Text = texts[0];
+                    btnSet.Text = texts[1];
+                    btnExit.Text = texts[2];
+                }
+                catch { }
+
+
                 var result = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/getLangs?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&ui=en");
                 var data = JObject.Parse(result);
                 List<string> list = new List<string>();
