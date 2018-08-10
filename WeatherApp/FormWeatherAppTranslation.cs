@@ -13,6 +13,7 @@ namespace WeatherApp
     {
         static List<string> buttons = new List<string>();
 
+        // Замена переведенных кнопок
         public void TextChange(List<string> texts)
         {
             settingsToolStripMenuItem.Text = texts[0];
@@ -26,10 +27,9 @@ namespace WeatherApp
             radioButtonCelsius.Text = texts[8];
             radioButtonFahrenheit.Text = texts[9];
             radioButtonKelvin.Text = texts[10];
-
-
         }
 
+        // Перевод запросов
         public void TranslateOutput()
         {
             using (WebClient wc = new WebClient())
@@ -41,6 +41,7 @@ namespace WeatherApp
             }
         }
 
+        // Перевод кнопок
         public void WebClient()
         {
             using (WebClient wc = new WebClient())
@@ -63,7 +64,7 @@ namespace WeatherApp
                 };
 
 
-                for (int item = 0; item < 9; item++)
+                for (int item = 0; item < 11; item++)
                 {
                     var result = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={buttons[item]}&lang={Languages.Language}");
                     var data = JObject.Parse(result);

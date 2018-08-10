@@ -55,11 +55,12 @@
             this.txtCityName.Dock = System.Windows.Forms.DockStyle.Left;
             this.txtCityName.Location = new System.Drawing.Point(8, 38);
             this.txtCityName.Name = "txtCityName";
-            this.txtCityName.Size = new System.Drawing.Size(285, 20);
+            this.txtCityName.Size = new System.Drawing.Size(272, 20);
             this.txtCityName.TabIndex = 0;
             // 
             // btnToday
             // 
+            this.btnToday.AutoEllipsis = true;
             this.btnToday.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnToday.Location = new System.Drawing.Point(8, 68);
             this.btnToday.Name = "btnToday";
@@ -75,16 +76,17 @@
             this.txtResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtResult.Location = new System.Drawing.Point(8, 128);
             this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(392, 284);
+            this.txtResult.Size = new System.Drawing.Size(437, 284);
             this.txtResult.TabIndex = 2;
             this.txtResult.Text = "";
             // 
             // btnTomorrow
             // 
+            this.btnTomorrow.AutoEllipsis = true;
             this.btnTomorrow.Location = new System.Drawing.Point(155, 68);
             this.btnTomorrow.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.btnTomorrow.Name = "btnTomorrow";
-            this.btnTomorrow.Size = new System.Drawing.Size(114, 24);
+            this.btnTomorrow.Size = new System.Drawing.Size(125, 24);
             this.btnTomorrow.TabIndex = 1;
             this.btnTomorrow.Text = "Tomorrow";
             this.btnTomorrow.UseVisualStyleBackColor = true;
@@ -92,10 +94,11 @@
             // 
             // btnFiveDaysH
             // 
+            this.btnFiveDaysH.AutoEllipsis = true;
             this.btnFiveDaysH.Location = new System.Drawing.Point(155, 98);
             this.btnFiveDaysH.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.btnFiveDaysH.Name = "btnFiveDaysH";
-            this.btnFiveDaysH.Size = new System.Drawing.Size(114, 24);
+            this.btnFiveDaysH.Size = new System.Drawing.Size(125, 24);
             this.btnFiveDaysH.TabIndex = 1;
             this.btnFiveDaysH.Text = "5 Days By Hours";
             this.btnFiveDaysH.UseVisualStyleBackColor = true;
@@ -104,20 +107,22 @@
             // radioButtonFahrenheit
             // 
             this.radioButtonFahrenheit.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radioButtonFahrenheit.AutoEllipsis = true;
             this.radioButtonFahrenheit.AutoSize = true;
-            this.radioButtonFahrenheit.Location = new System.Drawing.Point(322, 41);
+            this.radioButtonFahrenheit.Location = new System.Drawing.Point(370, 41);
             this.radioButtonFahrenheit.Name = "radioButtonFahrenheit";
-            this.radioButtonFahrenheit.Size = new System.Drawing.Size(78, 17);
+            this.radioButtonFahrenheit.Size = new System.Drawing.Size(75, 17);
             this.radioButtonFahrenheit.TabIndex = 3;
-            this.radioButtonFahrenheit.Text = "Fahrenheit ";
+            this.radioButtonFahrenheit.Text = "Fahrenheit";
             this.radioButtonFahrenheit.UseVisualStyleBackColor = true;
             // 
             // radioButtonCelsius
             // 
             this.radioButtonCelsius.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radioButtonCelsius.AutoEllipsis = true;
             this.radioButtonCelsius.AutoSize = true;
             this.radioButtonCelsius.Checked = true;
-            this.radioButtonCelsius.Location = new System.Drawing.Point(324, 11);
+            this.radioButtonCelsius.Location = new System.Drawing.Point(369, 11);
             this.radioButtonCelsius.Name = "radioButtonCelsius";
             this.radioButtonCelsius.Size = new System.Drawing.Size(76, 17);
             this.radioButtonCelsius.TabIndex = 3;
@@ -128,8 +133,9 @@
             // radioButtonKelvin
             // 
             this.radioButtonKelvin.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radioButtonKelvin.AutoEllipsis = true;
             this.radioButtonKelvin.AutoSize = true;
-            this.radioButtonKelvin.Location = new System.Drawing.Point(322, 71);
+            this.radioButtonKelvin.Location = new System.Drawing.Point(367, 71);
             this.radioButtonKelvin.Name = "radioButtonKelvin";
             this.radioButtonKelvin.Size = new System.Drawing.Size(78, 17);
             this.radioButtonKelvin.TabIndex = 3;
@@ -138,6 +144,7 @@
             // 
             // btnFiveDays
             // 
+            this.btnFiveDays.AutoEllipsis = true;
             this.btnFiveDays.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFiveDays.Location = new System.Drawing.Point(8, 98);
             this.btnFiveDays.Name = "btnFiveDays";
@@ -152,8 +159,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.Controls.Add(this.txtResult, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnFiveDays, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.radioButtonFahrenheit, 2, 1);
@@ -177,11 +183,12 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(408, 420);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(453, 420);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // lblEnterCity
             // 
+            this.lblEnterCity.AutoEllipsis = true;
             this.lblEnterCity.AutoSize = true;
             this.lblEnterCity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblEnterCity.Location = new System.Drawing.Point(8, 5);
@@ -193,10 +200,11 @@
             // 
             // btnLocation
             // 
-            this.btnLocation.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnLocation.Location = new System.Drawing.Point(128, 8);
+            this.btnLocation.AutoSize = true;
+            this.btnLocation.Location = new System.Drawing.Point(155, 8);
+            this.btnLocation.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
             this.btnLocation.Name = "btnLocation";
-            this.btnLocation.Size = new System.Drawing.Size(165, 24);
+            this.btnLocation.Size = new System.Drawing.Size(125, 24);
             this.btnLocation.TabIndex = 7;
             this.btnLocation.Text = "Determine Location";
             this.btnLocation.UseVisualStyleBackColor = true;
@@ -205,7 +213,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(306, 95);
+            this.label1.Location = new System.Drawing.Point(331, 95);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 8;
@@ -219,7 +227,7 @@
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(408, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(453, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -243,11 +251,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 444);
+            this.ClientSize = new System.Drawing.Size(453, 444);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(469, 483);
             this.Name = "FormWeatherApp";
             this.Text = "WeatherApp";
             this.tableLayoutPanel1.ResumeLayout(false);

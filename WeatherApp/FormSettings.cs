@@ -14,9 +14,8 @@ namespace WeatherApp
 {
     public partial class FormSettings : Form
     {
-        Dictionary<string, string> languages = new Dictionary<string, string>();
-        static List<string> texts = new List<string>();
-
+        Dictionary<string, string> languages = new Dictionary<string, string>(); // Словарь - список языков
+        static List<string> texts = new List<string>(); // Тексты кнопок
 
         public FormSettings()
         {
@@ -68,7 +67,8 @@ namespace WeatherApp
                     list.Add(sub2);
                 }
                 comboBox1.DataSource = list;
-
+                
+                // Запросы: 
                 // Список языков
                 //https://translate.yandex.net/api/v1.5/tr.json/getLangs?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&ui=en
                 // Определение языка
@@ -78,6 +78,8 @@ namespace WeatherApp
             }
         }
 
+
+        // Кнопки
         private void BtnSet_Click(object sender, EventArgs e)
         {
             Languages.Language = languages[comboBox1.Text];

@@ -18,14 +18,12 @@ namespace WeatherApp
         static string sub = null;
         static int iter = 0;
        
-
-
         public FormWeatherApp()
         {
             InitializeComponent();
         }
-
-
+        
+        // Единицы измерения
         public void RadioButtonsUnitSet(Options options)
         {
             if (radioButtonCelsius.Checked)
@@ -60,6 +58,7 @@ namespace WeatherApp
                 txtResult.Text += "meter/sec\n";
         }
 
+        // Вывод погоды
         public void WeatherToday(JObject data, Options options)
         {
             txtResult.Text = "City: " + (string)data["name"] + '\n';
@@ -83,7 +82,7 @@ namespace WeatherApp
 
             txtResult.Text = "City: " + (string)data["city"]["name"] + '\n';
 
-            for (int i = 6; i < 13; i++)
+            for (int i = 6; i < 13; i++) // Подсчет средней минимальной и максимальной погоды
             {
                 if ((int)data["list"][i]["main"]["temp_min"] < min)
                 {
@@ -100,7 +99,7 @@ namespace WeatherApp
             TemperatureUnits(options);
             txtResult.Text += "\n";
 
-            for (int i = 5; i < 13; i++)
+            for (int i = 5; i < 13; i++) // Вывод погоды на завтра по часам
             {
                 txtResult.Text += "Weather description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
                 txtResult.Text += "Temperature: " + (string)data["list"][i]["main"]["temp"];
@@ -119,12 +118,12 @@ namespace WeatherApp
         {
             txtResult.Text = "City: " + (string)data["city"]["name"] + '\n';
 
-            for (int i = 1; i < 6; i++) // days
+            for (int i = 1; i < 6; i++) // 5 Дней
             {
                 DateTime dateValue = DateTime.Now.AddDays(i - 1);
                 txtResult.Text += "\t\t\t" + dateValue.DayOfWeek.ToString() + "\n";
                 float temperature = 0, windspeed = 0, cloudiness = 0, pressure = 0, humidity = 0, min = 0, max = 0;
-                do
+                do // Сумма всех показателей (чтобы в дальнейшем найти среднее значение
                 {
                     if (index == (int)data["cnt"]) break;
                     label1.Text = (string)data["list"][index]["dt_txt"];
@@ -150,7 +149,6 @@ namespace WeatherApp
                         iter++;
                     }
                 } while (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}");
-                //==
 
                 txtResult.Text += "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
                 txtResult.Text += "Minimum temperature: " + Math.Round(min / iter,2);
@@ -162,7 +160,7 @@ namespace WeatherApp
                 txtResult.Text += "Cloudiness: " + Math.Round(cloudiness / iter,1) + "%\n";
                 txtResult.Text += "Pressure: " + Math.Round(pressure / iter,0) + " hPa\n";
                 txtResult.Text += "Humidity: " + Math.Round(humidity / iter,0) + "%\n\n";
-                //==
+               
                 iter = 0;
 
             }
@@ -171,8 +169,7 @@ namespace WeatherApp
         public void WeatherFiveDaysByHours(JObject data, Options options)
         {
             txtResult.Text = "City: " + (string)data["city"]["name"] + '\n';
-            //=====================
-            for (int i = 1; i < 6; i++) // days
+            for (int i = 1; i < 6; i++) // 5 дней
             {
                 DateTime dateValue = DateTime.Now.AddDays(i - 1);
                 txtResult.Text += "\t\t\t" + dateValue.DayOfWeek.ToString() + "\n";
@@ -209,7 +206,7 @@ namespace WeatherApp
 
         }
 
-        //===
+        // Кнопки
         private void BtnLocation_Click(object sender, EventArgs e)
         {
             using (WebClient wc = new WebClient())
@@ -350,6 +347,7 @@ namespace WeatherApp
 
         }
 
+        // Меню
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var wnd = new FormSettings();
