@@ -87,7 +87,7 @@
             this.btnSet.Name = "btnSet";
             this.btnSet.Size = new System.Drawing.Size(131, 24);
             this.btnSet.TabIndex = 2;
-            this.btnSet.Text = "Set";
+            this.btnSet.Text = "Set Up";
             this.btnSet.UseVisualStyleBackColor = true;
             this.btnSet.Click += new System.EventHandler(this.BtnSet_Click);
             // 

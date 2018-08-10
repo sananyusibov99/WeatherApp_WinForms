@@ -17,7 +17,7 @@ namespace WeatherApp
         public static int index = 0, test = 0;
         static string sub = null;
         static int iter = 0;
-        static List<string> texts = new List<string>();
+       
 
 
         public FormWeatherApp()
@@ -25,17 +25,6 @@ namespace WeatherApp
             InitializeComponent();
         }
 
-        private void btnLocation_Click(object sender, EventArgs e)
-        {
-            using (WebClient wc = new WebClient())
-            {
-                wc.Encoding = Encoding.UTF8;
-                var result = wc.DownloadString($"http://api.ipstack.com/check?access_key=fc3e2a13f4fe42814bff600fac16ac9b");
-                var data = JObject.Parse(result);
-
-                txtCityName.Text = (string)data["city"];
-            }
-        }
 
         public void RadioButtonsUnitSet(Options options)
         {
@@ -74,18 +63,18 @@ namespace WeatherApp
         public void WeatherToday(JObject data, Options options)
         {
             txtResult.Text = "City: " + (string)data["name"] + '\n';
-            txtResult.Text += "Weather description: " + (string)data["weather"][0]["description"] + '\n';
-            txtResult.Text = txtResult.Text + "Temperature: " + (string)data["main"]["temp"];
+            txtResult.Text += "Weather Description: " + (string)data["weather"][0]["description"] + '\n';
+            txtResult.Text += "Temperature: " + (string)data["main"]["temp"];
             TemperatureUnits(options);
-            txtResult.Text = txtResult.Text + "Minimum temperature: " + (string)data["main"]["temp_min"];
+            txtResult.Text += "Minimum temperature: " + (string)data["main"]["temp_min"];
             TemperatureUnits(options);
-            txtResult.Text = txtResult.Text + "Maximum temperature: " + (string)data["main"]["temp_max"];
+            txtResult.Text += "Maximum temperature: " + (string)data["main"]["temp_max"];
             TemperatureUnits(options);
-            txtResult.Text = txtResult.Text + "Wind speed: " + (string)data["wind"]["speed"];
+            txtResult.Text += "Wind Speed: " + (string)data["wind"]["speed"];
             SpeedUnits(options);
-            txtResult.Text = txtResult.Text + "Cloudiness: " + (string)data["clouds"]["all"] + "%\n";
-            txtResult.Text = txtResult.Text + "Pressure: " + (string)data["main"]["pressure"] + " hPa\n";
-            txtResult.Text = txtResult.Text + "Humidity: " + (string)data["main"]["humidity"] + "%\n";
+            txtResult.Text += "Cloudiness: " + (string)data["clouds"]["all"] + "%\n";
+            txtResult.Text += "Pressure: " + (string)data["main"]["pressure"] + " hPa\n";
+            txtResult.Text += "Humidity: " + (string)data["main"]["humidity"] + "%\n";
         }
 
         public void WeatherTomorrow(JObject data, Options options)
@@ -105,23 +94,23 @@ namespace WeatherApp
                     max = (int)data["list"][i]["main"]["temp_max"];
                 }
             }
-            txtResult.Text = txtResult.Text + "Minimum Temperature: " + min;
+            txtResult.Text += "Minimum temperature: " + min;
             TemperatureUnits(options);
-            txtResult.Text = txtResult.Text + "Maximum Temperature: " + max;
+            txtResult.Text += "Maximum temperature: " + max;
             TemperatureUnits(options);
             txtResult.Text += "\n";
 
             for (int i = 5; i < 13; i++)
             {
-                txtResult.Text = txtResult.Text + "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
-                txtResult.Text = txtResult.Text + "Temperature: " + (string)data["list"][i]["main"]["temp"];
+                txtResult.Text += "Weather description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
+                txtResult.Text += "Temperature: " + (string)data["list"][i]["main"]["temp"];
                 TemperatureUnits(options);
-                txtResult.Text = txtResult.Text + "Wind speed: " + (string)data["list"][i]["wind"]["speed"];
+                txtResult.Text += "Wind Speed: " + (string)data["list"][i]["wind"]["speed"];
                 SpeedUnits(options);
-                txtResult.Text = txtResult.Text + "Cloudiness: " + (string)data["list"][i]["clouds"]["all"] + "%\n";
-                txtResult.Text = txtResult.Text + "Pressure: " + (string)data["list"][i]["main"]["pressure"] + " hPa\n";
-                txtResult.Text = txtResult.Text + "Humidity: " + (string)data["list"][i]["main"]["humidity"] + "%\n";
-                txtResult.Text = txtResult.Text + "dt_txt: " + (string)data["list"][i]["dt_txt"] + "\n\n";
+                txtResult.Text += "Cloudiness: " + (string)data["list"][i]["clouds"]["all"] + "%\n";
+                txtResult.Text += "Pressure: " + (string)data["list"][i]["main"]["pressure"] + " hPa\n";
+                txtResult.Text += "Humidity: " + (string)data["list"][i]["main"]["humidity"] + "%\n";
+                txtResult.Text += "Date: " + (string)data["list"][i]["dt_txt"] + "\n\n";
             }
 
         }
@@ -163,12 +152,12 @@ namespace WeatherApp
                 } while (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}");
                 //==
 
-                txtResult.Text = txtResult.Text + "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
-                txtResult.Text += "Minimum Temperature: " + Math.Round(min / iter,2);
+                txtResult.Text += "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
+                txtResult.Text += "Minimum temperature: " + Math.Round(min / iter,2);
                 TemperatureUnits(options);
-                txtResult.Text += "Maximum Temperature: " + Math.Round(max / iter,2);
+                txtResult.Text += "Maximum temperature: " + Math.Round(max / iter,2);
                 TemperatureUnits(options);
-                txtResult.Text += "Wind speed: " + Math.Round(windspeed / iter,2);
+                txtResult.Text += "Wind Speed: " + Math.Round(windspeed / iter,2);
                 SpeedUnits(options);
                 txtResult.Text += "Cloudiness: " + Math.Round(cloudiness / iter,1) + "%\n";
                 txtResult.Text += "Pressure: " + Math.Round(pressure / iter,0) + " hPa\n";
@@ -199,14 +188,14 @@ namespace WeatherApp
                     if (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}")
                     {
                         txtResult.Text += label1.Text + "\n";
-                        txtResult.Text = txtResult.Text + "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
-                        txtResult.Text = txtResult.Text + "Temperature: " + (string)data["list"][index]["main"]["temp"];
+                        txtResult.Text += "Weather Description" + (string)data["list"][i]["weather"][0]["description"] + '\n';
+                        txtResult.Text += "Temperature: " + (string)data["list"][index]["main"]["temp"];
                         TemperatureUnits(options);
-                        txtResult.Text = txtResult.Text + "Wind speed: " + (string)data["list"][index]["wind"]["speed"];
+                        txtResult.Text += "Wind Speed: " + (string)data["list"][index]["wind"]["speed"];
                         SpeedUnits(options);
-                        txtResult.Text = txtResult.Text + "Cloudiness: " + (string)data["list"][index]["clouds"]["all"] + "%\n";
-                        txtResult.Text = txtResult.Text + "Pressure: " + (string)data["list"][index]["main"]["pressure"] + " hPa\n";
-                        txtResult.Text = txtResult.Text + "Humidity: " + (string)data["list"][index]["main"]["humidity"] + "%\n\n";
+                        txtResult.Text += "Cloudiness: " + (string)data["list"][index]["clouds"]["all"] + "%\n";
+                        txtResult.Text += "Pressure: " + (string)data["list"][index]["main"]["pressure"] + " hPa\n";
+                        txtResult.Text += "Humidity: " + (string)data["list"][index]["main"]["humidity"] + "%\n\n";
 
                         //MessageBox.Show(sub);
                         //MessageBox.Show($"{DateTime.Now.AddDays(i-1).ToString("yyyy-MM-dd")}");
@@ -220,7 +209,20 @@ namespace WeatherApp
 
         }
 
-        private void btnTodayWeather_Click(object sender, EventArgs e)
+        //===
+        private void BtnLocation_Click(object sender, EventArgs e)
+        {
+            using (WebClient wc = new WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                var result = wc.DownloadString($"http://api.ipstack.com/check?access_key=fc3e2a13f4fe42814bff600fac16ac9b");
+                var data = JObject.Parse(result);
+
+                txtCityName.Text = (string)data["city"];
+            }
+        }
+
+        private void BtnTodayWeather_Click(object sender, EventArgs e)
         {
             using (WebClient wc = new WebClient())
             {
@@ -237,14 +239,22 @@ namespace WeatherApp
 
                         WeatherToday(data, options);
                     }
-                    catch { }
+                    catch {
+                        txtResult.Text = "Incorrect city name";
+                    }
                 }
-                else txtResult.Text = "Enter city name!";
+                else txtResult.Text = "Enter city name";
 
+                try
+                {
+                    TranslateOutput();
+                }
+                catch { }
             }
+
         }
 
-        private void btnTomorrowWeather_Click(object sender, EventArgs e)
+        private void BtnTomorrowWeather_Click(object sender, EventArgs e)
         {
             using (WebClient wc = new WebClient())
             {
@@ -260,15 +270,22 @@ namespace WeatherApp
                         var data = JObject.Parse(result);
 
                         WeatherTomorrow(data, options);
-
                     }
-                    catch { }
+                    catch {
+                        txtResult.Text = "Incorrect city name";
+                    }
                 }
-                else txtResult.Text = "Enter city name!";
+                else txtResult.Text = "Enter city name";
+
+                try
+                {
+                    TranslateOutput();
+                }
+                catch { }
             }
         }
 
-        private void btnFiveDays_Click(object sender, EventArgs e)
+        private void BtnFiveDays_Click(object sender, EventArgs e)
         {
             index = 0;
             using (WebClient wc = new WebClient())
@@ -276,65 +293,64 @@ namespace WeatherApp
                 wc.Encoding = Encoding.UTF8;
                 if (txtCityName.Text.Any())
                 {
-                    Options options = new Options(txtCityName.Text);
-                    RadioButtonsUnitSet(options);
+                    try
+                    {
+                        Options options = new Options(txtCityName.Text);
+                        RadioButtonsUnitSet(options);
 
-                    var result = wc.DownloadString($"http://api.openweathermap.org/data/2.5/forecast?q={options.City}&mode=json&APPID=44e4a0d8152c6a9538668064c5c591dc&units={options.Units}");
-                    var data = JObject.Parse(result);
+                        var result = wc.DownloadString($"http://api.openweathermap.org/data/2.5/forecast?q={options.City}&mode=json&APPID=44e4a0d8152c6a9538668064c5c591dc&units={options.Units}");
+                        var data = JObject.Parse(result);
 
-                    WeatherFiveDays(data, options);
+                        WeatherFiveDays(data, options);
+                    }
+                    catch {
+                        txtResult.Text = "Incorrect city name";
+                    }
                 }
-                else txtResult.Text = "Enter city name!";
+                else txtResult.Text = "Enter city name";
+
+                try
+                {
+                    TranslateOutput();
+                }
+                catch { }
             }
         }
 
-        public void TextChange(List<string> texts)
+        private void BtnFiveDays_By_Hours_Click(object sender, EventArgs e)
         {
-            settingsToolStripMenuItem.Text = texts[0];
-            lblEnterCity.Text = texts[1];
-            btnLocation.Text = texts[2];
-            btnToday.Text = texts[3];
-            btnTomorrow.Text = texts[4];
-            btnFiveDays.Text = texts[5];
-            btnFiveDaysH.Text = texts[6];
-            radioButtonCelsius.Text = texts[7];
-            radioButtonFahrenheit.Text = texts[8];
-            radioButtonKelvin.Text = texts[9];
-        }
-
-        public void WebClient()
-        {
+            index = 0;
             using (WebClient wc = new WebClient())
             {
                 wc.Encoding = Encoding.UTF8;
-
-                texts = new List<string>
+                if (txtCityName.Text.Any())
                 {
-                    settingsToolStripMenuItem.Text,
-                    lblEnterCity.Text,
-                    btnLocation.Text,
-                    btnToday.Text,
-                    btnTomorrow.Text,
-                    btnFiveDays.Text,
-                    btnFiveDaysH.Text,
-                    radioButtonCelsius.Text,
-                    radioButtonFahrenheit.Text,
-                    radioButtonKelvin.Text
-                };
+                    try
+                    {
+                        Options options = new Options(txtCityName.Text);
+                        RadioButtonsUnitSet(options);
 
+                        var result = wc.DownloadString($"http://api.openweathermap.org/data/2.5/forecast?q={options.City}&mode=json&APPID=44e4a0d8152c6a9538668064c5c591dc&units={options.Units}");
+                        var data = JObject.Parse(result);
 
-                for (int item = 0; item < 8; item++)
-                {
-                    var result = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={texts[item]}&lang={Languages.Language}");
-                    var data = JObject.Parse(result);
-                    texts[item] = (string)data["text"][0];
+                        WeatherFiveDaysByHours(data, options);
+                    }
+                    catch {
+                        txtResult.Text = "Incorrect city name";
+                    }
                 }
+                else txtResult.Text = "Enter city name";
 
-                TextChange(texts);
+                try
+                {
+                    TranslateOutput();
+                }
+                catch { }
             }
+
         }
 
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var wnd = new FormSettings();
             var res = wnd.ShowDialog();
@@ -342,30 +358,9 @@ namespace WeatherApp
             WebClient();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnFiveDays_By_Hours_Click(object sender, EventArgs e)
-        {
-            index = 0;
-            using (WebClient wc = new WebClient())
-            {
-                wc.Encoding = Encoding.UTF8;
-                if (txtCityName.Text.Any())
-                {
-
-                    Options options = new Options(txtCityName.Text);
-                    RadioButtonsUnitSet(options);
-
-                    var result = wc.DownloadString($"http://api.openweathermap.org/data/2.5/forecast?q={options.City}&mode=json&APPID=44e4a0d8152c6a9538668064c5c591dc&units={options.Units}");
-                    var data = JObject.Parse(result);
-
-                    WeatherFiveDaysByHours(data, options);
-                }
-                else txtResult.Text = "Enter city name!";
-            }
         }
     }
 }
