@@ -17,12 +17,13 @@ namespace WeatherApp
         public static int index = 0, test = 0;
         static string sub = null;
         static int iter = 0;
-       
+
         public FormWeatherApp()
         {
             InitializeComponent();
         }
-        
+
+
         // Единицы измерения
         public void RadioButtonsUnitSet(Options options)
         {
@@ -61,8 +62,11 @@ namespace WeatherApp
         // Вывод погоды
         public void WeatherToday(JObject data, Options options)
         {
-            txtResult.Text = "City: " + (string)data["name"] + '\n';
-            txtResult.Text += "Weather Description: " + (string)data["weather"][0]["description"] + '\n';
+            txtCityDay.Text = "City: " + (string)data["name"] + '\n';
+            DateTime dateValue = DateTime.Now;
+            txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
+            txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n";
+            txtResult.Text = "Weather Description: " + (string)data["weather"][0]["description"] + '\n';
             txtResult.Text += "Temperature: " + (string)data["main"]["temp"];
             TemperatureUnits(options);
             txtResult.Text += "Minimum temperature: " + (string)data["main"]["temp_min"];
@@ -74,14 +78,19 @@ namespace WeatherApp
             txtResult.Text += "Cloudiness: " + (string)data["clouds"]["all"] + "%\n";
             txtResult.Text += "Pressure: " + (string)data["main"]["pressure"] + " hPa\n";
             txtResult.Text += "Humidity: " + (string)data["main"]["humidity"] + "%\n";
+
+            string picture = (string)data["weather"][0]["icon"];
+            pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
         }
 
         public void WeatherTomorrow(JObject data, Options options)
         {
             float min = 99999, max = -99999;
 
-            txtResult.Text = "City: " + (string)data["city"]["name"] + '\n';
-
+            txtCityDay.Text = "City: " + (string)data["city"]["name"] + '\n';
+            DateTime dateValue = DateTime.Now.AddDays(1);
+            txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
+            txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n";
             for (int i = 6; i < 13; i++) // Подсчет средней минимальной и максимальной погоды
             {
                 if ((int)data["list"][i]["main"]["temp_min"] < min)
@@ -93,7 +102,7 @@ namespace WeatherApp
                     max = (int)data["list"][i]["main"]["temp_max"];
                 }
             }
-            txtResult.Text += "Minimum temperature: " + min;
+            txtResult.Text = "Minimum temperature: " + min;
             TemperatureUnits(options);
             txtResult.Text += "Maximum temperature: " + max;
             TemperatureUnits(options);
@@ -110,18 +119,25 @@ namespace WeatherApp
                 txtResult.Text += "Pressure: " + (string)data["list"][i]["main"]["pressure"] + " hPa\n";
                 txtResult.Text += "Humidity: " + (string)data["list"][i]["main"]["humidity"] + "%\n";
                 txtResult.Text += "Date: " + (string)data["list"][i]["dt_txt"] + "\n\n";
+
+                string picture = (string)data["list"][i]["weather"][0]["icon"];
+                pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
+
+                
             }
 
         }
 
         public void WeatherFiveDays(JObject data, Options options)
         {
-            txtResult.Text = "City: " + (string)data["city"]["name"] + '\n';
-
+            txtCityDay.Text = "City: " + (string)data["city"]["name"] + '\n';
+            txtResult.Text = "";
             for (int i = 1; i < 6; i++) // 5 Дней
             {
                 DateTime dateValue = DateTime.Now.AddDays(i - 1);
-                txtResult.Text += "\t\t\t" + dateValue.DayOfWeek.ToString() + "\n";
+                txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
+                txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n\n";
+
                 float temperature = 0, windspeed = 0, cloudiness = 0, pressure = 0, humidity = 0, min = 0, max = 0;
                 do // Сумма всех показателей (чтобы в дальнейшем найти среднее значение
                 {
@@ -168,11 +184,14 @@ namespace WeatherApp
 
         public void WeatherFiveDaysByHours(JObject data, Options options)
         {
-            txtResult.Text = "City: " + (string)data["city"]["name"] + '\n';
+            txtCityDay.Text = "City: " + (string)data["city"]["name"] + '\n';
+            txtResult.Text = "";
+
             for (int i = 1; i < 6; i++) // 5 дней
             {
                 DateTime dateValue = DateTime.Now.AddDays(i - 1);
-                txtResult.Text += "\t\t\t" + dateValue.DayOfWeek.ToString() + "\n";
+                txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
+                txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n\n";
                 do
                 {
                     if (index == (int)data["cnt"]) break;
@@ -354,6 +373,11 @@ namespace WeatherApp
             var res = wnd.ShowDialog();
 
             WebClient();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
