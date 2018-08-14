@@ -150,10 +150,9 @@
             // btnLocation
             // 
             this.btnLocation.AutoSize = true;
-            this.btnLocation.Location = new System.Drawing.Point(142, 8);
-            this.btnLocation.Margin = new System.Windows.Forms.Padding(30, 3, 3, 3);
+            this.btnLocation.Location = new System.Drawing.Point(115, 8);
             this.btnLocation.Name = "btnLocation";
-            this.btnLocation.Size = new System.Drawing.Size(109, 24);
+            this.btnLocation.Size = new System.Drawing.Size(152, 24);
             this.btnLocation.TabIndex = 7;
             this.btnLocation.Text = "Determine Location";
             this.btnLocation.UseVisualStyleBackColor = true;
