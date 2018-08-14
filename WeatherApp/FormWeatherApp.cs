@@ -52,37 +52,37 @@ namespace WeatherApp
         public void TemperatureUnits(Options options)
         {
             if (options.Units == "metric")
-                txtResult.Text += "°С\n";
+                txtResult.Text += " °С\n";
             else if (options.Units == "imperial")
-                txtResult.Text += "°F\n";
+                txtResult.Text += " °F\n";
             else
-                txtResult.Text += "K\n";
+                txtResult.Text += " K\n";
         }
 
         public void TemperatureUnits(Options options, Label label)
         {
             if (options.Units == "metric")
-                label.Text += "°С\n";
+                label.Text += " °С\n";
             else if (options.Units == "imperial")
-                label.Text += "°F\n";
+                label.Text += " °F\n";
             else
-                label.Text += "K\n";
+                label.Text += " K\n";
         }
 
         public void SpeedUnits(Options options)
         {
             if (options.Units == "imperial")
-                txtResult.Text += "km/h\n";
+                txtResult.Text += " km/h\n";
             else
-                txtResult.Text += "meter/sec\n";
+                txtResult.Text += " meter/sec\n";
         }
 
         public void SpeedUnits(Options options, Label label)
         {
             if (options.Units == "imperial")
-                label.Text += "km/h\n";
+                label.Text += " km/h\n";
             else
-                label.Text += "meter/sec\n";
+                label.Text += " meter/sec\n";
         }
 
         // Вывод погоды
@@ -92,7 +92,7 @@ namespace WeatherApp
             DateTime dateValue = DateTime.Now;
             txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
             txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n";
-            txtResult.Text = "Weather Description: " + (string)data["weather"][0]["description"] + '\n';
+            txtResult.Text = "Weather Description: " + (string)data["weather"][0]["description"] + " \n";
             txtResult.Text += "Temperature: " + (string)data["main"]["temp"];
             TemperatureUnits(options);
             txtResult.Text += "Minimum temperature: " + (string)data["main"]["temp_min"];
@@ -101,9 +101,9 @@ namespace WeatherApp
             TemperatureUnits(options);
             txtResult.Text += "Wind Speed: " + (string)data["wind"]["speed"];
             SpeedUnits(options);
-            txtResult.Text += "Cloudiness: " + (string)data["clouds"]["all"] + "%\n";
+            txtResult.Text += "Cloudiness: " + (string)data["clouds"]["all"] + " %\n";
             txtResult.Text += "Pressure: " + (string)data["main"]["pressure"] + " hPa\n";
-            txtResult.Text += "Humidity: " + (string)data["main"]["humidity"] + "%\n";
+            txtResult.Text += "Humidity: " + (string)data["main"]["humidity"] + " %\n";
 
             string picture = (string)data["weather"][0]["icon"];
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
@@ -116,9 +116,9 @@ namespace WeatherApp
                 TemperatureUnits(options);
                 txtResult.Text += "Wind Speed: " + (string)data["list"][TommorowShowIndex]["wind"]["speed"];
                 SpeedUnits(options);
-                txtResult.Text += "Cloudiness: " + (string)data["list"][TommorowShowIndex]["clouds"]["all"] + "%\n";
+                txtResult.Text += "Cloudiness: " + (string)data["list"][TommorowShowIndex]["clouds"]["all"] + " %\n";
                 txtResult.Text += "Pressure: " + (string)data["list"][TommorowShowIndex]["main"]["pressure"] + " hPa\n";
-                txtResult.Text += "Humidity: " + (string)data["list"][TommorowShowIndex]["main"]["humidity"] + "%\n";
+                txtResult.Text += "Humidity: " + (string)data["list"][TommorowShowIndex]["main"]["humidity"] + " %\n";
                 txtResult.Text += "Date: " + (string)data["list"][TommorowShowIndex]["dt_txt"] + "\n\n";
 
                 string picture = (string)data["list"][TommorowShowIndex]["weather"][0]["icon"];
@@ -201,9 +201,9 @@ namespace WeatherApp
             TemperatureUnits(options);
             txtResult.Text += "Wind Speed: " + Math.Round(windspeed / iter, 2);
             SpeedUnits(options);
-            txtResult.Text += "Cloudiness: " + Math.Round(cloudiness / iter, 1) + "%\n";
+            txtResult.Text += "Cloudiness: " + Math.Round(cloudiness / iter, 1) + " %\n";
             txtResult.Text += "Pressure: " + Math.Round(pressure / iter, 0) + " hPa\n";
-            txtResult.Text += "Humidity: " + Math.Round(humidity / iter, 0) + "%\n\n";
+            txtResult.Text += "Humidity: " + Math.Round(humidity / iter, 0) + " %\n\n";
 
             string picture = (string)data["list"][FiveDaysShowIndex]["weather"][0]["icon"];
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
@@ -242,9 +242,9 @@ namespace WeatherApp
                         TemperatureUnits(options);
                         txtResult.Text += "Wind Speed: " + (string)data["list"][index]["wind"]["speed"];
                         SpeedUnits(options);
-                        txtResult.Text += "Cloudiness: " + (string)data["list"][index]["clouds"]["all"] + "%\n";
+                        txtResult.Text += "Cloudiness: " + (string)data["list"][index]["clouds"]["all"] + " %\n";
                         txtResult.Text += "Pressure: " + (string)data["list"][index]["main"]["pressure"] + " hPa\n";
-                        txtResult.Text += "Humidity: " + (string)data["list"][index]["main"]["humidity"] + "%\n\n";
+                        txtResult.Text += "Humidity: " + (string)data["list"][index]["main"]["humidity"] + " %\n\n";
 
                     }
                     else
@@ -322,7 +322,7 @@ namespace WeatherApp
 
                 try
                 {
-                    TranslateOutput();
+                    TranslateResult();
                 }
                 catch { }
             }
@@ -363,7 +363,7 @@ namespace WeatherApp
 
                 try
                 {
-                    TranslateOutput();
+                    TranslateResult();
                 }
                 catch { }
             }
@@ -402,7 +402,7 @@ namespace WeatherApp
 
                 try
                 {
-                    TranslateOutput();
+                    TranslateResult();
                 }
                 catch { }
             }
@@ -440,7 +440,7 @@ namespace WeatherApp
 
                 try
                 {
-                    TranslateOutput();
+                    TranslateResult();
                 }
                 catch { }
             }
@@ -449,10 +449,13 @@ namespace WeatherApp
         // Меню
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var wnd = new FormSettings();
-            var res = wnd.ShowDialog();
-
-            WebClient();
+            try
+            {
+                var wnd = new FormSettings();
+                var res = wnd.ShowDialog();
+                WebClient();
+            }
+            catch { }
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
@@ -515,5 +518,87 @@ namespace WeatherApp
         {
             Close();
         }
+
+
+        //ПЕРЕВОДЧИК
+
+        static List<string> buttons = new List<string>();
+
+        // Замена переведенных кнопок
+        public void TextChange(List<string> texts)
+        {
+            settingsToolStripMenuItem.Text = texts[0];
+            exitToolStripMenuItem.Text = texts[1];
+            lblEnterCity.Text = texts[2];
+            btnLocation.Text = texts[3];
+            btnToday.Text = texts[4];
+            btnTomorrow.Text = texts[5];
+            btnFiveDays.Text = texts[6];
+            btnFiveDaysH.Text = texts[7];
+            radioButtonCelsius.Text = texts[8];
+            radioButtonFahrenheit.Text = texts[9];
+            radioButtonKelvin.Text = texts[10];
+            btnNext.Text = texts[11];
+            btnPrev.Text = texts[12];
+        }
+
+        // Перевод запросов
+        public void TranslateResult()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                var res = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={txtResult.Text}&lang={Languages.Language}");
+                var dat = JObject.Parse(res);
+                txtResult.Text = (string)dat["text"][0];
+
+                res = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={txtCityDay.Text}&lang={Languages.Language}");
+                dat = JObject.Parse(res);
+                txtCityDay.Text = (string)dat["text"][0];
+
+                res = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={txtRes.Text}&lang={Languages.Language}");
+                dat = JObject.Parse(res);
+                txtRes.Text = (string)dat["text"][0];
+
+            }
+        }
+       
+        // Перевод кнопок
+        public void WebClient()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+
+                buttons = new List<string>
+                {
+                    settingsToolStripMenuItem.Text,
+                    exitToolStripMenuItem.Text,
+                    lblEnterCity.Text,
+                    btnLocation.Text,
+                    btnToday.Text,
+                    btnTomorrow.Text,
+                    btnFiveDays.Text,
+                    btnFiveDaysH.Text,
+                    radioButtonCelsius.Text,
+                    radioButtonFahrenheit.Text,
+                    radioButtonKelvin.Text, 
+                    btnNext.Text,
+                    btnPrev.Text
+                };
+
+
+                for (int item = 0; item < 13; item++)
+                {
+                    var result = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={buttons[item]}&lang={Languages.Language}");
+                    var data = JObject.Parse(result);
+                    buttons[item] = (string)data["text"][0];
+                }
+
+                TextChange(buttons);
+            }
+        }
+
+
     }
 }
