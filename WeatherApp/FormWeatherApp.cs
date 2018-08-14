@@ -14,10 +14,14 @@ namespace WeatherApp
 {
     public partial class FormWeatherApp : Form
     {
-        public static int index = 0, test = 0;
+        enum LastFunc { TODAY=1, TOMORROW, FIVE, FIVEH }
+        int Last = 0;
+        public static int index = 0, indexFiveDays =0, test = 0;
         static string sub = null;
         static int iter = 0;
-
+        static int TommorowShowIndex = 5; // 5-12
+        static int FiveDaysShowIndex = 1; // 1-5
+        static int FiveDaysHShowIndex = 1; // 1-5
         public FormWeatherApp()
         {
             InitializeComponent();
@@ -83,6 +87,25 @@ namespace WeatherApp
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
         }
 
+        public void TomorrowShow(JObject data, Options options)
+        {
+                txtResult.Text += "Weather description: " + (string)data["list"][TommorowShowIndex]["weather"][0]["description"] + '\n';
+                txtResult.Text += "Temperature: " + (string)data["list"][TommorowShowIndex]["main"]["temp"];
+                TemperatureUnits(options);
+                txtResult.Text += "Wind Speed: " + (string)data["list"][TommorowShowIndex]["wind"]["speed"];
+                SpeedUnits(options);
+                txtResult.Text += "Cloudiness: " + (string)data["list"][TommorowShowIndex]["clouds"]["all"] + "%\n";
+                txtResult.Text += "Pressure: " + (string)data["list"][TommorowShowIndex]["main"]["pressure"] + " hPa\n";
+                txtResult.Text += "Humidity: " + (string)data["list"][TommorowShowIndex]["main"]["humidity"] + "%\n";
+                txtResult.Text += "Date: " + (string)data["list"][TommorowShowIndex]["dt_txt"] + "\n\n";
+
+                string picture = (string)data["list"][TommorowShowIndex]["weather"][0]["icon"];
+                pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
+
+
+            
+        }
+
         public void WeatherTomorrow(JObject data, Options options)
         {
             float min = 99999, max = -99999;
@@ -108,23 +131,7 @@ namespace WeatherApp
             TemperatureUnits(options);
             txtResult.Text += "\n";
 
-            for (int i = 5; i < 13; i++) // Вывод погоды на завтра по часам
-            {
-                txtResult.Text += "Weather description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
-                txtResult.Text += "Temperature: " + (string)data["list"][i]["main"]["temp"];
-                TemperatureUnits(options);
-                txtResult.Text += "Wind Speed: " + (string)data["list"][i]["wind"]["speed"];
-                SpeedUnits(options);
-                txtResult.Text += "Cloudiness: " + (string)data["list"][i]["clouds"]["all"] + "%\n";
-                txtResult.Text += "Pressure: " + (string)data["list"][i]["main"]["pressure"] + " hPa\n";
-                txtResult.Text += "Humidity: " + (string)data["list"][i]["main"]["humidity"] + "%\n";
-                txtResult.Text += "Date: " + (string)data["list"][i]["dt_txt"] + "\n\n";
-
-                string picture = (string)data["list"][i]["weather"][0]["icon"];
-                pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
-
-                
-            }
+            TomorrowShow(data, options);
 
         }
 
@@ -132,54 +139,55 @@ namespace WeatherApp
         {
             txtCityDay.Text = "City: " + (string)data["city"]["name"] + '\n';
             txtResult.Text = "";
-            for (int i = 1; i < 6; i++) // 5 Дней
+
+            DateTime dateValue = DateTime.Now.AddDays(FiveDaysShowIndex - 1);
+            txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
+            txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n\n";
+
+            float temperature = 0, windspeed = 0, cloudiness = 0, pressure = 0, humidity = 0, min = 0, max = 0;
+            do // Сумма всех показателей (чтобы в дальнейшем найти среднее значение)
             {
-                DateTime dateValue = DateTime.Now.AddDays(i - 1);
-                txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
-                txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n\n";
+                if (indexFiveDays == (int)data["cnt"]) break;
+                label1.Text = (string)data["list"][indexFiveDays]["dt_txt"];
+                String value = label1.Text;
+                Char delimiter = ' ';
+                String[] substrings = value.Split(delimiter);
+                sub = substrings[0];
 
-                float temperature = 0, windspeed = 0, cloudiness = 0, pressure = 0, humidity = 0, min = 0, max = 0;
-                do // Сумма всех показателей (чтобы в дальнейшем найти среднее значение
+                if (sub == $"{DateTime.Now.AddDays(FiveDaysShowIndex - 1).ToString("yyyy-MM-dd")}")
                 {
-                    if (index == (int)data["cnt"]) break;
-                    label1.Text = (string)data["list"][index]["dt_txt"];
-                    String value = label1.Text;
-                    Char delimiter = ' ';
-                    String[] substrings = value.Split(delimiter);
-                    sub = substrings[0];
+                    temperature += (float)data["list"][indexFiveDays]["main"]["temp"];
+                    windspeed += (float)data["list"][indexFiveDays]["wind"]["speed"];
+                    cloudiness += (float)data["list"][indexFiveDays]["clouds"]["all"];
+                    pressure += (float)data["list"][indexFiveDays]["clouds"]["all"];
+                    humidity += (float)data["list"][indexFiveDays]["main"]["humidity"];
+                    min += (float)data["list"][indexFiveDays]["main"]["temp_min"];
+                    max += (float)data["list"][indexFiveDays]["main"]["temp_max"];
 
-                    if (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}")
-                    {
-                        temperature += (float)data["list"][index]["main"]["temp"];
-                        windspeed += (float)data["list"][index]["wind"]["speed"];
-                        cloudiness += (float)data["list"][index]["clouds"]["all"];
-                        pressure += (float)data["list"][index]["clouds"]["all"];
-                        humidity += (float)data["list"][index]["main"]["humidity"];
-                        min += (float)data["list"][index]["main"]["temp_min"];
-                        max += (float)data["list"][index]["main"]["temp_max"];
+                    //MessageBox.Show($"{DateTime.Now.AddDays(i-1).ToString("yyyy-MM-dd")}");
+                    //label1.Text.StartsWith($"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}")
 
-                        //MessageBox.Show($"{DateTime.Now.AddDays(i-1).ToString("yyyy-MM-dd")}");
-                        //label1.Text.StartsWith($"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}")
+                    indexFiveDays++;
+                    iter++;
+                }
+            } while (sub == $"{DateTime.Now.AddDays(FiveDaysShowIndex - 1).ToString("yyyy-MM-dd")}");
 
-                        index++;
-                        iter++;
-                    }
-                } while (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}");
+            txtResult.Text += "Weather Description: " + (string)data["list"][FiveDaysShowIndex]["weather"][0]["description"] + '\n';
+            txtResult.Text += "Minimum temperature: " + Math.Round(min / iter, 2);
+            TemperatureUnits(options);
+            txtResult.Text += "Maximum temperature: " + Math.Round(max / iter, 2);
+            TemperatureUnits(options);
+            txtResult.Text += "Wind Speed: " + Math.Round(windspeed / iter, 2);
+            SpeedUnits(options);
+            txtResult.Text += "Cloudiness: " + Math.Round(cloudiness / iter, 1) + "%\n";
+            txtResult.Text += "Pressure: " + Math.Round(pressure / iter, 0) + " hPa\n";
+            txtResult.Text += "Humidity: " + Math.Round(humidity / iter, 0) + "%\n\n";
 
-                txtResult.Text += "Weather Description: " + (string)data["list"][i]["weather"][0]["description"] + '\n';
-                txtResult.Text += "Minimum temperature: " + Math.Round(min / iter,2);
-                TemperatureUnits(options);
-                txtResult.Text += "Maximum temperature: " + Math.Round(max / iter,2);
-                TemperatureUnits(options);
-                txtResult.Text += "Wind Speed: " + Math.Round(windspeed / iter,2);
-                SpeedUnits(options);
-                txtResult.Text += "Cloudiness: " + Math.Round(cloudiness / iter,1) + "%\n";
-                txtResult.Text += "Pressure: " + Math.Round(pressure / iter,0) + " hPa\n";
-                txtResult.Text += "Humidity: " + Math.Round(humidity / iter,0) + "%\n\n";
-               
-                iter = 0;
+            string picture = (string)data["list"][FiveDaysShowIndex]["weather"][0]["icon"];
+            pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
 
-            }
+            iter = 0;
+
         }
 
         public void WeatherFiveDaysByHours(JObject data, Options options)
@@ -187,41 +195,41 @@ namespace WeatherApp
             txtCityDay.Text = "City: " + (string)data["city"]["name"] + '\n';
             txtResult.Text = "";
 
-            for (int i = 1; i < 6; i++) // 5 дней
+            DateTime dateValue = DateTime.Now.AddDays(FiveDaysHShowIndex - 1);
+            txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
+            txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n\n";
+            do
             {
-                DateTime dateValue = DateTime.Now.AddDays(i - 1);
-                txtCityDay.Text += dateValue.Day + "." + dateValue.Month.ToString("00") + "." + dateValue.Year + "\n";
-                txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n\n";
-                do
+                if (index == (int)data["cnt"]) break;
+                label1.Text = (string)data["list"][index]["dt_txt"];
+                String value = label1.Text;
+                Char delimiter = ' ';
+                String[] substrings = value.Split(delimiter);
+                sub = substrings[0];
+
+                if (sub == $"{DateTime.Now.AddDays(FiveDaysHShowIndex - 1).ToString("yyyy-MM-dd")}")
                 {
-                    if (index == (int)data["cnt"]) break;
-                    label1.Text = (string)data["list"][index]["dt_txt"];
-                    String value = label1.Text;
-                    Char delimiter = ' ';
-                    String[] substrings = value.Split(delimiter);
-                    sub = substrings[0];
+                    txtResult.Text += label1.Text + "\n";
+                    txtResult.Text += "Weather Description: " + (string)data["list"][FiveDaysHShowIndex]["weather"][0]["description"] + '\n';
+                    txtResult.Text += "Temperature: " + (string)data["list"][index]["main"]["temp"];
+                    TemperatureUnits(options);
+                    txtResult.Text += "Wind Speed: " + (string)data["list"][index]["wind"]["speed"];
+                    SpeedUnits(options);
+                    txtResult.Text += "Cloudiness: " + (string)data["list"][index]["clouds"]["all"] + "%\n";
+                    txtResult.Text += "Pressure: " + (string)data["list"][index]["main"]["pressure"] + " hPa\n";
+                    txtResult.Text += "Humidity: " + (string)data["list"][index]["main"]["humidity"] + "%\n\n";
 
-                    if (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}")
-                    {
-                        txtResult.Text += label1.Text + "\n";
-                        txtResult.Text += "Weather Description" + (string)data["list"][i]["weather"][0]["description"] + '\n';
-                        txtResult.Text += "Temperature: " + (string)data["list"][index]["main"]["temp"];
-                        TemperatureUnits(options);
-                        txtResult.Text += "Wind Speed: " + (string)data["list"][index]["wind"]["speed"];
-                        SpeedUnits(options);
-                        txtResult.Text += "Cloudiness: " + (string)data["list"][index]["clouds"]["all"] + "%\n";
-                        txtResult.Text += "Pressure: " + (string)data["list"][index]["main"]["pressure"] + " hPa\n";
-                        txtResult.Text += "Humidity: " + (string)data["list"][index]["main"]["humidity"] + "%\n\n";
+                    //MessageBox.Show(sub);
+                    //MessageBox.Show($"{DateTime.Now.AddDays(i-1).ToString("yyyy-MM-dd")}");
+                    //label1.Text.StartsWith($"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}")
 
-                        //MessageBox.Show(sub);
-                        //MessageBox.Show($"{DateTime.Now.AddDays(i-1).ToString("yyyy-MM-dd")}");
-                        //label1.Text.StartsWith($"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}")
+                    index++;
 
-                        index++;
+                }
+            } while (sub == $"{DateTime.Now.AddDays(FiveDaysHShowIndex - 1).ToString("yyyy-MM-dd")}");
 
-                    }
-                } while (sub == $"{DateTime.Now.AddDays(i - 1).ToString("yyyy-MM-dd")}");
-            }
+            string picture = (string)data["list"][FiveDaysHShowIndex]["weather"][0]["icon"];
+            pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
 
         }
 
@@ -240,6 +248,14 @@ namespace WeatherApp
 
         private void BtnTodayWeather_Click(object sender, EventArgs e)
         {
+            btnNext.Hide();
+            btnPrev.Hide();
+            Last = (int)LastFunc.TODAY;
+            TommorowShowIndex = 5; // 5-12
+            FiveDaysShowIndex = 1; // 1-5
+            FiveDaysHShowIndex = 1; // 1-5
+            indexFiveDays = 0;
+            index = 0;
             using (WebClient wc = new WebClient())
             {
                 wc.Encoding = Encoding.UTF8;
@@ -267,11 +283,17 @@ namespace WeatherApp
                 }
                 catch { }
             }
-
         }
 
         private void BtnTomorrowWeather_Click(object sender, EventArgs e)
         {
+            btnNext.Show();
+            btnPrev.Show();
+            Last = (int)LastFunc.TOMORROW;
+            FiveDaysShowIndex = 1; // 1-5
+            FiveDaysHShowIndex = 1; // 1-5
+            indexFiveDays = 0;
+            index = 0;
             using (WebClient wc = new WebClient())
             {
                 wc.Encoding = Encoding.UTF8;
@@ -303,6 +325,11 @@ namespace WeatherApp
 
         private void BtnFiveDays_Click(object sender, EventArgs e)
         {
+            btnNext.Show();
+            btnPrev.Show();
+            Last = (int)LastFunc.FIVE;
+            TommorowShowIndex = 5; // 5-12
+            FiveDaysHShowIndex = 1; // 1-5
             index = 0;
             using (WebClient wc = new WebClient())
             {
@@ -335,7 +362,12 @@ namespace WeatherApp
 
         private void BtnFiveDays_By_Hours_Click(object sender, EventArgs e)
         {
-            index = 0;
+            btnNext.Show();
+            btnPrev.Show();
+            Last = (int)LastFunc.FIVEH;
+            TommorowShowIndex = 5; // 5-12
+            FiveDaysShowIndex = 1; // 1-5
+            indexFiveDays = 0;
             using (WebClient wc = new WebClient())
             {
                 wc.Encoding = Encoding.UTF8;
@@ -363,7 +395,6 @@ namespace WeatherApp
                 }
                 catch { }
             }
-
         }
 
         // Меню
@@ -375,9 +406,60 @@ namespace WeatherApp
             WebClient();
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        private void BtnNext_Click(object sender, EventArgs e)
         {
+             if (Last == 2)
+            {
+                if (TommorowShowIndex < 13)
+                {
+                    TommorowShowIndex++;
+                    BtnTomorrowWeather_Click(sender, e);
+                }
+            }
+            else if (Last == 3)
+            {
+                if (FiveDaysShowIndex < 6)
+                {
+                    FiveDaysShowIndex++;
+                    BtnFiveDays_Click(sender, e);
+                }
+            }
+            else if (Last == 4)
+            {
+                if (FiveDaysHShowIndex < 6)
+                {
+                    FiveDaysHShowIndex++;
+                    BtnFiveDays_By_Hours_Click(sender, e);
+                }
+            }
+        }
 
+        private void BtnPrev_Click(object sender, EventArgs e)
+        {
+            if (Last == 2)
+            {
+                if (TommorowShowIndex > 5)
+                {
+                    TommorowShowIndex--;
+                    BtnTomorrowWeather_Click(sender, e);
+                }
+            }
+            else if (Last == 3)
+            {
+                if (FiveDaysShowIndex > 1)
+                {
+                    FiveDaysShowIndex--;
+                    BtnFiveDays_Click(sender, e);
+                }
+            }
+            else if (Last == 4)
+            {
+                if (FiveDaysHShowIndex > 1)
+                {
+                    FiveDaysHShowIndex--;
+                    BtnFiveDays_By_Hours_Click(sender, e);
+                }
+            }
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
