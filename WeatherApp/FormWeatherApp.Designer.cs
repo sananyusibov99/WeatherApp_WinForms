@@ -45,10 +45,10 @@
             this.radioButtonFahrenheit = new System.Windows.Forms.RadioButton();
             this.btnFiveDays = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtResult = new System.Windows.Forms.Label();
-            this.txtResult2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtResult = new System.Windows.Forms.Label();
             this.txtCityDay = new System.Windows.Forms.Label();
+            this.txtResult2 = new System.Windows.Forms.Label();
             this.txtRes = new System.Windows.Forms.Label();
             this.txtCityName = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
@@ -63,7 +63,7 @@
             this.exitToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(484, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(584, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -97,7 +97,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(298, 95);
+            this.label1.Location = new System.Drawing.Point(348, 95);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 8;
@@ -106,7 +106,7 @@
             // btnNext
             // 
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.Location = new System.Drawing.Point(372, 305);
+            this.btnNext.Location = new System.Drawing.Point(472, 506);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(104, 23);
             this.btnNext.TabIndex = 10;
@@ -116,7 +116,7 @@
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(8, 305);
+            this.btnPrev.Location = new System.Drawing.Point(8, 506);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(101, 23);
             this.btnPrev.TabIndex = 9;
@@ -140,7 +140,7 @@
             // 
             this.radioButtonKelvin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radioButtonKelvin.AutoSize = true;
-            this.radioButtonKelvin.Location = new System.Drawing.Point(398, 71);
+            this.radioButtonKelvin.Location = new System.Drawing.Point(498, 71);
             this.radioButtonKelvin.Name = "radioButtonKelvin";
             this.radioButtonKelvin.Size = new System.Drawing.Size(78, 17);
             this.radioButtonKelvin.TabIndex = 3;
@@ -163,7 +163,7 @@
             this.radioButtonCelsius.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radioButtonCelsius.AutoSize = true;
             this.radioButtonCelsius.Checked = true;
-            this.radioButtonCelsius.Location = new System.Drawing.Point(400, 11);
+            this.radioButtonCelsius.Location = new System.Drawing.Point(500, 11);
             this.radioButtonCelsius.Name = "radioButtonCelsius";
             this.radioButtonCelsius.Size = new System.Drawing.Size(76, 17);
             this.radioButtonCelsius.TabIndex = 3;
@@ -199,7 +199,7 @@
             // 
             this.radioButtonFahrenheit.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radioButtonFahrenheit.AutoSize = true;
-            this.radioButtonFahrenheit.Location = new System.Drawing.Point(401, 41);
+            this.radioButtonFahrenheit.Location = new System.Drawing.Point(501, 41);
             this.radioButtonFahrenheit.Name = "radioButtonFahrenheit";
             this.radioButtonFahrenheit.Size = new System.Drawing.Size(75, 17);
             this.radioButtonFahrenheit.TabIndex = 3;
@@ -256,26 +256,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(484, 337);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(584, 538);
             this.tableLayoutPanel1.TabIndex = 6;
-            // 
-            // txtResult
-            // 
-            this.txtResult.AutoSize = true;
-            this.txtResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtResult.Location = new System.Drawing.Point(115, 125);
-            this.txtResult.Name = "txtResult";
-            this.tableLayoutPanel1.SetRowSpan(this.txtResult, 2);
-            this.txtResult.Size = new System.Drawing.Size(177, 177);
-            this.txtResult.TabIndex = 12;
-            // 
-            // txtResult2
-            // 
-            this.txtResult2.AutoSize = true;
-            this.txtResult2.Location = new System.Drawing.Point(115, 302);
-            this.txtResult2.Name = "txtResult2";
-            this.txtResult2.Size = new System.Drawing.Size(0, 13);
-            this.txtResult2.TabIndex = 13;
             // 
             // pictureBox1
             // 
@@ -288,23 +270,42 @@
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
+            // txtResult
+            // 
+            this.txtResult.AutoSize = true;
+            this.txtResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtResult.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtResult.Location = new System.Drawing.Point(115, 125);
+            this.txtResult.Name = "txtResult";
+            this.tableLayoutPanel1.SetRowSpan(this.txtResult, 2);
+            this.txtResult.Size = new System.Drawing.Size(227, 378);
+            this.txtResult.TabIndex = 12;
+            // 
             // txtCityDay
             // 
             this.txtCityDay.AutoSize = true;
             this.txtCityDay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCityDay.Location = new System.Drawing.Point(8, 185);
             this.txtCityDay.Name = "txtCityDay";
-            this.txtCityDay.Size = new System.Drawing.Size(101, 117);
+            this.txtCityDay.Size = new System.Drawing.Size(101, 318);
             this.txtCityDay.TabIndex = 15;
+            // 
+            // txtResult2
+            // 
+            this.txtResult2.AutoSize = true;
+            this.txtResult2.Location = new System.Drawing.Point(115, 503);
+            this.txtResult2.Name = "txtResult2";
+            this.txtResult2.Size = new System.Drawing.Size(0, 13);
+            this.txtResult2.TabIndex = 13;
             // 
             // txtRes
             // 
             this.txtRes.AutoSize = true;
             this.txtRes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtRes.Location = new System.Drawing.Point(298, 125);
+            this.txtRes.Location = new System.Drawing.Point(348, 125);
             this.txtRes.Name = "txtRes";
             this.tableLayoutPanel1.SetRowSpan(this.txtRes, 2);
-            this.txtRes.Size = new System.Drawing.Size(178, 177);
+            this.txtRes.Size = new System.Drawing.Size(228, 378);
             this.txtRes.TabIndex = 16;
             // 
             // txtCityName
@@ -319,11 +320,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::WeatherApp.Properties.Resources.Clouds;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(484, 361);
+            this.ClientSize = new System.Drawing.Size(584, 562);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;

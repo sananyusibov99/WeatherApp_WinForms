@@ -103,27 +103,26 @@ namespace WeatherApp
             txtResult.Text += "Pressure: " + (string)data["main"]["pressure"] + " hPa\n";
             txtResult.Text += "Humidity: " + (string)data["main"]["humidity"] + " %\n";
 
+            ChangeBackground(data);
             string picture = (string)data["weather"][0]["icon"];
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
         }
 
         public void TomorrowShow(JObject data, Options options)
         {
-                txtResult.Text += "Weather description: " + (string)data["list"][TommorowShowIndex]["weather"][0]["description"] + '\n';
-                txtResult.Text += "Temperature: " + (string)data["list"][TommorowShowIndex]["main"]["temp"];
-                TemperatureUnits(options);
-                txtResult.Text += "Wind Speed: " + (string)data["list"][TommorowShowIndex]["wind"]["speed"];
-                SpeedUnits(options);
-                txtResult.Text += "Cloudiness: " + (string)data["list"][TommorowShowIndex]["clouds"]["all"] + " %\n";
-                txtResult.Text += "Pressure: " + (string)data["list"][TommorowShowIndex]["main"]["pressure"] + " hPa\n";
-                txtResult.Text += "Humidity: " + (string)data["list"][TommorowShowIndex]["main"]["humidity"] + " %\n";
-                txtResult.Text += "Date: " + (string)data["list"][TommorowShowIndex]["dt_txt"] + "\n\n";
+            txtResult.Text += "Weather description: " + (string)data["list"][TommorowShowIndex]["weather"][0]["description"] + '\n';
+            txtResult.Text += "Temperature: " + (string)data["list"][TommorowShowIndex]["main"]["temp"];
+            TemperatureUnits(options);
+            txtResult.Text += "Wind Speed: " + (string)data["list"][TommorowShowIndex]["wind"]["speed"];
+            SpeedUnits(options);
+            txtResult.Text += "Cloudiness: " + (string)data["list"][TommorowShowIndex]["clouds"]["all"] + " %\n";
+            txtResult.Text += "Pressure: " + (string)data["list"][TommorowShowIndex]["main"]["pressure"] + " hPa\n";
+            txtResult.Text += "Humidity: " + (string)data["list"][TommorowShowIndex]["main"]["humidity"] + " %\n";
+            txtResult.Text += "Date: " + (string)data["list"][TommorowShowIndex]["dt_txt"] + "\n\n";
 
-                string picture = (string)data["list"][TommorowShowIndex]["weather"][0]["icon"];
-                pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
-
-
-            
+            ChangeBackground(data, TommorowShowIndex);
+            string picture = (string)data["list"][TommorowShowIndex]["weather"][0]["icon"];
+            pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
         }
 
         public void WeatherTomorrow(JObject data, Options options)
@@ -203,9 +202,9 @@ namespace WeatherApp
             txtResult.Text += "Pressure: " + Math.Round(pressure / iter, 0) + " hPa\n";
             txtResult.Text += "Humidity: " + Math.Round(humidity / iter, 0) + " %\n\n";
 
+            ChangeBackground(data, FiveDaysShowIndex);
             string picture = (string)data["list"][FiveDaysShowIndex]["weather"][0]["icon"];
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
-
             iter = 0;
 
         }
@@ -267,6 +266,7 @@ namespace WeatherApp
                 labelindex++;
             } while (sub == $"{DateTime.Now.AddDays(FiveDaysHShowIndex - 1).ToString("yyyy-MM-dd")}");
 
+            ChangeBackground(data, FiveDaysHShowIndex);
             string picture = (string)data["list"][FiveDaysHShowIndex]["weather"][0]["icon"];
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
         }
@@ -556,7 +556,7 @@ namespace WeatherApp
             "ragged shower rain"
         };
 
-        static List<string> Snow = new List<string>
+        static List<string> Snow = new List<string> 
         {
             "light snow",
             "snow",
@@ -570,7 +570,7 @@ namespace WeatherApp
             "heavy shower snow",
         };
 
-        static List<string> Mist = new List<string>
+        static List<string> Mist = new List<string> 
         {
             "mist",
             "smoke",
@@ -584,7 +584,7 @@ namespace WeatherApp
             "tornado",
         };
 
-        static List<string> Clouds = new List<string>
+        static List<string> Clouds = new List<string> 
         {
             "few clouds",
             "scattered clouds",
@@ -592,6 +592,99 @@ namespace WeatherApp
             "overcast clouds",
         };
 
+        public void ChangeBackground(JObject data)
+        {
+
+            foreach (var item in Thunderstorm)
+            {
+                if (item == (string)data["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Thunder;
+                    return;
+                }
+            }
+            foreach (var item in Rain)
+            {
+                if (item == (string)data["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Rain;
+                    return;
+                }
+            }
+            foreach (var item in Snow)
+            {
+                if (item == (string)data["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Snow;
+                    return;
+                }
+            }
+            foreach (var item in Mist)
+            {
+                if (item == (string)data["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Fog;
+                    return;
+                }
+            }
+            foreach (var item in Clouds)
+            {
+                if (item == (string)data["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Clouds;
+                    return;
+                }
+            }
+            this.BackgroundImage = Properties.Resources.Clear;
+            // (string)data["weather"][0]["description"]
+        }
+
+        public void ChangeBackground(JObject data, int Index)
+        {
+            foreach (var item in Thunderstorm)
+            {
+                if (item == (string)data["list"][Index]["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Thunder;
+                    return;
+                }
+            }
+            foreach (var item in Rain)
+            {
+                if (item == (string)data["list"][Index]["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Rain;
+                    return;
+                }
+            }
+            foreach (var item in Snow)
+            {
+                if (item == (string)data["list"][Index]["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Snow;
+                    return;
+                }
+            }
+            foreach (var item in Mist)
+            {
+                if (item == (string)data["list"][Index]["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Fog;
+                    return;
+                }
+            }
+            foreach (var item in Clouds)
+            {
+                if (item == (string)data["list"][Index]["weather"][0]["description"])
+                {
+                    this.BackgroundImage = Properties.Resources.Clouds;
+                    return;
+                }
+            }
+            this.BackgroundImage = Properties.Resources.Clear;
+            //(string)data["list"][Index]["weather"][0]["description"]
+        }
+        
         //ПЕРЕВОДЧИК
 
         static List<string> buttons = new List<string>();
