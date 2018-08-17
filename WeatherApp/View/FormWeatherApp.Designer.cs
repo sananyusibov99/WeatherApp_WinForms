@@ -106,20 +106,22 @@
             // btnNext
             // 
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.Location = new System.Drawing.Point(472, 506);
+            this.btnNext.Location = new System.Drawing.Point(472, 535);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(104, 23);
             this.btnNext.TabIndex = 10;
+            this.btnNext.TabStop = false;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(8, 506);
+            this.btnPrev.Location = new System.Drawing.Point(8, 535);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(101, 23);
             this.btnPrev.TabIndex = 9;
+            this.btnPrev.TabStop = false;
             this.btnPrev.Text = "Previous";
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.BtnPrev_Click);
@@ -132,6 +134,7 @@
             this.btnTomorrow.Name = "btnTomorrow";
             this.btnTomorrow.Size = new System.Drawing.Size(125, 24);
             this.btnTomorrow.TabIndex = 1;
+            this.btnTomorrow.TabStop = false;
             this.btnTomorrow.Text = "Tomorrow";
             this.btnTomorrow.UseVisualStyleBackColor = true;
             this.btnTomorrow.Click += new System.EventHandler(this.BtnTomorrowWeather_Click);
@@ -154,6 +157,7 @@
             this.btnLocation.Name = "btnLocation";
             this.btnLocation.Size = new System.Drawing.Size(152, 24);
             this.btnLocation.TabIndex = 7;
+            this.btnLocation.TabStop = false;
             this.btnLocation.Text = "Determine Location";
             this.btnLocation.UseVisualStyleBackColor = true;
             this.btnLocation.Click += new System.EventHandler(this.BtnLocation_Click);
@@ -179,6 +183,7 @@
             this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(101, 24);
             this.btnToday.TabIndex = 1;
+            this.btnToday.TabStop = false;
             this.btnToday.Text = "Today";
             this.btnToday.UseVisualStyleBackColor = true;
             this.btnToday.Click += new System.EventHandler(this.BtnTodayWeather_Click);
@@ -191,6 +196,7 @@
             this.btnFiveDaysH.Name = "btnFiveDaysH";
             this.btnFiveDaysH.Size = new System.Drawing.Size(125, 24);
             this.btnFiveDaysH.TabIndex = 1;
+            this.btnFiveDaysH.TabStop = false;
             this.btnFiveDaysH.Text = "5 Days By Hours";
             this.btnFiveDaysH.UseVisualStyleBackColor = true;
             this.btnFiveDaysH.Click += new System.EventHandler(this.BtnFiveDays_By_Hours_Click);
@@ -214,6 +220,7 @@
             this.btnFiveDays.Name = "btnFiveDays";
             this.btnFiveDays.Size = new System.Drawing.Size(101, 24);
             this.btnFiveDays.TabIndex = 5;
+            this.btnFiveDays.TabStop = false;
             this.btnFiveDays.Text = "5 Days";
             this.btnFiveDays.UseVisualStyleBackColor = true;
             this.btnFiveDays.Click += new System.EventHandler(this.BtnFiveDays_Click);
@@ -256,7 +263,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(584, 538);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(584, 567);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // pictureBox1
@@ -278,7 +285,7 @@
             this.txtResult.Location = new System.Drawing.Point(115, 125);
             this.txtResult.Name = "txtResult";
             this.tableLayoutPanel1.SetRowSpan(this.txtResult, 2);
-            this.txtResult.Size = new System.Drawing.Size(227, 378);
+            this.txtResult.Size = new System.Drawing.Size(227, 407);
             this.txtResult.TabIndex = 12;
             // 
             // txtCityDay
@@ -287,13 +294,13 @@
             this.txtCityDay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCityDay.Location = new System.Drawing.Point(8, 185);
             this.txtCityDay.Name = "txtCityDay";
-            this.txtCityDay.Size = new System.Drawing.Size(101, 318);
+            this.txtCityDay.Size = new System.Drawing.Size(101, 347);
             this.txtCityDay.TabIndex = 15;
             // 
             // txtResult2
             // 
             this.txtResult2.AutoSize = true;
-            this.txtResult2.Location = new System.Drawing.Point(115, 503);
+            this.txtResult2.Location = new System.Drawing.Point(115, 532);
             this.txtResult2.Name = "txtResult2";
             this.txtResult2.Size = new System.Drawing.Size(0, 13);
             this.txtResult2.TabIndex = 13;
@@ -305,7 +312,7 @@
             this.txtRes.Location = new System.Drawing.Point(348, 125);
             this.txtRes.Name = "txtRes";
             this.tableLayoutPanel1.SetRowSpan(this.txtRes, 2);
-            this.txtRes.Size = new System.Drawing.Size(228, 378);
+            this.txtRes.Size = new System.Drawing.Size(228, 407);
             this.txtRes.TabIndex = 16;
             // 
             // txtCityName
@@ -315,6 +322,7 @@
             this.txtCityName.Name = "txtCityName";
             this.txtCityName.Size = new System.Drawing.Size(259, 20);
             this.txtCityName.TabIndex = 17;
+            this.txtCityName.TabStop = false;
             // 
             // FormWeatherApp
             // 
@@ -322,7 +330,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WeatherApp.Properties.Resources.Clouds;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(584, 562);
+            this.ClientSize = new System.Drawing.Size(584, 591);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;

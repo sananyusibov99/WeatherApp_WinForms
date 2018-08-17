@@ -16,6 +16,8 @@ namespace WeatherApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //var presenter = new Presenter(new LoginForm(), new LoginService()); // Dependency Injection
+            //presenter.Run();
             Application.Run(new FormWeatherApp());
         }
     }

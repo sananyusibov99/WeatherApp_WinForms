@@ -9,6 +9,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeatherApp.Services;
+
 
 namespace WeatherApp
 {
@@ -25,9 +27,7 @@ namespace WeatherApp
 
         public FormWeatherApp()
         {
-            
             InitializeComponent();
-            
         }
 
         // Единицы измерения
@@ -221,7 +221,6 @@ namespace WeatherApp
             txtCityDay.Text += dateValue.DayOfWeek.ToString() + "\n\n";
             do
             {
-
                 if (index == (int)data["cnt"]) break;
                 label1.Text = (string)data["list"][index]["dt_txt"];
                 String value = label1.Text;
@@ -242,7 +241,6 @@ namespace WeatherApp
                         txtResult.Text += "Cloudiness: " + (string)data["list"][index]["clouds"]["all"] + " %\n";
                         txtResult.Text += "Pressure: " + (string)data["list"][index]["main"]["pressure"] + " hPa\n";
                         txtResult.Text += "Humidity: " + (string)data["list"][index]["main"]["humidity"] + " %\n\n";
-
                     }
                     else
                     {
@@ -261,7 +259,6 @@ namespace WeatherApp
                     //label1.Text.StartsWith($"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}")
 
                     index++;
-
                 }
                 labelindex++;
             } while (sub == $"{DateTime.Now.AddDays(FiveDaysHShowIndex - 1).ToString("yyyy-MM-dd")}");
@@ -517,85 +514,10 @@ namespace WeatherApp
             Close();
         }
 
-        //Background
-        static List<string> Thunderstorm = new List<string>
-            {
-                "thunderstorm with light rain",
-                "thunderstorm with rain",
-                "thunderstorm with heavy rain",
-                "light thunderstorm",
-                "thunderstorm",
-                "heavy thunderstorm",
-                "ragged thunderstorm",
-                "thunderstorm with light drizzle",
-                "thunderstorm with drizzle",
-                "thunderstorm with heavy drizzle"
-            };
-
-        static List<string> Rain = new List<string>
-        {
-            "light intensity drizzle",
-            "drizzle",
-            "heavy intensity drizzle",
-            "light intensity drizzle rain",
-            "drizzle rain",
-            "heavy intensity drizzle rain",
-            "shower rain and drizzle",
-            "heavy shower rain and drizzle",
-            "shower drizzle",
-            //
-            "light rain",
-            "moderate rain",
-            "heavy intensity rain",
-            "very heavy rain",
-            "extreme rain",
-            "freezing rain",
-            "light intensity shower rain",
-            "shower rain",
-            "heavy intensity shower rain",
-            "ragged shower rain"
-        };
-
-        static List<string> Snow = new List<string> 
-        {
-            "light snow",
-            "snow",
-            "heavy snow",
-            "sleet",
-            "shower sleet",
-            "light rain and snow",
-            "rain and snow",
-            "light shower snow",
-            "shower snow",
-            "heavy shower snow",
-        };
-
-        static List<string> Mist = new List<string> 
-        {
-            "mist",
-            "smoke",
-            "haze",
-            "sand, dust whirls",
-            "fog",
-            "sand",
-            "dust",
-            "volcanic ash",
-            "squalls",
-            "tornado",
-        };
-
-        static List<string> Clouds = new List<string> 
-        {
-            "few clouds",
-            "scattered clouds",
-            "broken clouds",
-            "overcast clouds",
-        };
-
+        // Background
         public void ChangeBackground(JObject data)
         {
-
-            foreach (var item in Thunderstorm)
+            foreach (var item in Backgrounds.Thunderstorm)
             {
                 if (item == (string)data["weather"][0]["description"])
                 {
@@ -603,7 +525,7 @@ namespace WeatherApp
                     return;
                 }
             }
-            foreach (var item in Rain)
+            foreach (var item in Backgrounds.Rain)
             {
                 if (item == (string)data["weather"][0]["description"])
                 {
@@ -611,7 +533,7 @@ namespace WeatherApp
                     return;
                 }
             }
-            foreach (var item in Snow)
+            foreach (var item in Backgrounds.Snow)
             {
                 if (item == (string)data["weather"][0]["description"])
                 {
@@ -619,7 +541,7 @@ namespace WeatherApp
                     return;
                 }
             }
-            foreach (var item in Mist)
+            foreach (var item in Backgrounds.Mist)
             {
                 if (item == (string)data["weather"][0]["description"])
                 {
@@ -627,7 +549,7 @@ namespace WeatherApp
                     return;
                 }
             }
-            foreach (var item in Clouds)
+            foreach (var item in Backgrounds.Clouds)
             {
                 if (item == (string)data["weather"][0]["description"])
                 {
@@ -641,7 +563,7 @@ namespace WeatherApp
 
         public void ChangeBackground(JObject data, int Index)
         {
-            foreach (var item in Thunderstorm)
+            foreach (var item in Backgrounds.Thunderstorm)
             {
                 if (item == (string)data["list"][Index]["weather"][0]["description"])
                 {
@@ -649,7 +571,7 @@ namespace WeatherApp
                     return;
                 }
             }
-            foreach (var item in Rain)
+            foreach (var item in Backgrounds.Rain)
             {
                 if (item == (string)data["list"][Index]["weather"][0]["description"])
                 {
@@ -657,7 +579,7 @@ namespace WeatherApp
                     return;
                 }
             }
-            foreach (var item in Snow)
+            foreach (var item in Backgrounds.Snow)
             {
                 if (item == (string)data["list"][Index]["weather"][0]["description"])
                 {
@@ -665,7 +587,7 @@ namespace WeatherApp
                     return;
                 }
             }
-            foreach (var item in Mist)
+            foreach (var item in Backgrounds.Mist)
             {
                 if (item == (string)data["list"][Index]["weather"][0]["description"])
                 {
@@ -673,7 +595,7 @@ namespace WeatherApp
                     return;
                 }
             }
-            foreach (var item in Clouds)
+            foreach (var item in Backgrounds.Clouds)
             {
                 if (item == (string)data["list"][Index]["weather"][0]["description"])
                 {
@@ -685,8 +607,7 @@ namespace WeatherApp
             //(string)data["list"][Index]["weather"][0]["description"]
         }
         
-        //ПЕРЕВОДЧИК
-
+        // ПЕРЕВОДЧИК
         static List<string> buttons = new List<string>();
 
         // Замена переведенных кнопок
@@ -763,7 +684,6 @@ namespace WeatherApp
                 TextChange(buttons);
             }
         }
-
 
     }
 }
