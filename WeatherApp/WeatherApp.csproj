@@ -54,26 +54,30 @@
     <Compile Include="CustomTextBox.Designer.cs">
       <DependentUpon>CustomTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSettings.cs">
+    <Compile Include="Backgrounds.cs" />
+    <Compile Include="IAppView.cs" />
+    <Compile Include="IView.cs" />
+    <Compile Include="Presenter\Presenter.cs" />
+    <Compile Include="View\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSettings.Designer.cs">
+    <Compile Include="View\FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormWeatherApp.cs">
+    <Compile Include="View\FormWeatherApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormWeatherApp.Designer.cs">
+    <Compile Include="View\FormWeatherApp.Designer.cs">
       <DependentUpon>FormWeatherApp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Languages.cs" />
-    <Compile Include="Options.cs" />
+    <Compile Include="Model\Languages.cs" />
+    <Compile Include="Model\Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormSettings.resx">
+    <EmbeddedResource Include="View\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormWeatherApp.resx">
+    <EmbeddedResource Include="View\FormWeatherApp.resx">
       <DependentUpon>FormWeatherApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -138,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Thunder1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
