@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeatherApp.Presenter;
+using WeatherApp.View;
 
 namespace WeatherApp
 {
@@ -16,9 +18,14 @@ namespace WeatherApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //var presenter = new Presenter(new LoginForm(), new LoginService()); // Dependency Injection
-            //presenter.Run();
-            Application.Run(new FormWeatherApp());
+
+            var presenter = new WeatherPresenter();
+            FormWeatherApp view = new FormWeatherApp(presenter);
+            Options optionsModel = new Options();
+            WeatherPresenter weatherPresenter = new WeatherPresenter(view, optionsModel);
+            weatherPresenter.StartApplication();
+            
+            //Application.Run(new FormWeatherApp());
         }
     }
 }

@@ -45,10 +45,10 @@ C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\bin\Debug\Newtonsoft.
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.csprojResolveAssemblyReference.cache
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.FormSettings.resources
-C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.FormWeatherApp.resources
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.Properties.Resources.resources
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.cache
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.csproj.CopyComplete
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.exe
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.pdb
+C:\Users\sanan\source\repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.View.FormWeatherApp.resources

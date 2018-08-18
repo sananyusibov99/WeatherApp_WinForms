@@ -55,9 +55,10 @@
       <DependentUpon>CustomTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Backgrounds.cs" />
-    <Compile Include="IAppView.cs" />
-    <Compile Include="IView.cs" />
-    <Compile Include="Presenter\Presenter.cs" />
+    <Compile Include="Interfaces\IAppView.cs" />
+    <Compile Include="Interfaces\IView.cs" />
+    <Compile Include="Interfaces\IWeatherAppPresenter.cs" />
+    <Compile Include="Presenter\WeatherPresenter.cs" />
     <Compile Include="View\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,8 +144,6 @@
   <ItemGroup>
     <None Include="Resources\Thunder1.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
