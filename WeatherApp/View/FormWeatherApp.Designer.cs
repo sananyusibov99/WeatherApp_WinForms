@@ -1,4 +1,4 @@
-﻿namespace WeatherApp
+﻿namespace WeatherApp.View
 {
     partial class FormWeatherApp
     {

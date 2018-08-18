@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeatherApp.Services;
+using WeatherApp.Presenter;
 
-
-namespace WeatherApp
+namespace WeatherApp.View
 {
     public partial class FormWeatherApp : Form
     {
@@ -25,9 +25,18 @@ namespace WeatherApp
         static int FiveDaysShowIndex = 1; // 1-5
         static int FiveDaysHShowIndex = 1; // 1-5
 
-        public FormWeatherApp()
+        public WeatherPresenter WeatherPresenter { get; set; }
+
+        public void StartApplication()
+        {
+            Application.Run((Form)this);
+        }
+
+        public FormWeatherApp(WeatherPresenter weatherPresenter)
         {
             InitializeComponent();
+            WeatherPresenter = weatherPresenter;
+            //WeatherPresenter weatherPresenter = new WeatherPresenter();
         }
 
         // Единицы измерения
@@ -271,14 +280,7 @@ namespace WeatherApp
         // Кнопки
         private void BtnLocation_Click(object sender, EventArgs e)
         {
-            using (WebClient wc = new WebClient())
-            {
-                wc.Encoding = Encoding.UTF8;
-                var result = wc.DownloadString($"http://api.ipstack.com/check?access_key=fc3e2a13f4fe42814bff600fac16ac9b");
-                var data = JObject.Parse(result);
-
-                txtCityName.Text = (string)data["city"];
-            }
+            txtCityName.Text = WeatherPresenter.DetermineLocation();
         }
 
         private void BtnTodayWeather_Click(object sender, EventArgs e)
