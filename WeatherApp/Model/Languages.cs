@@ -8,11 +8,6 @@ namespace WeatherApp
 {
     public static class Languages
     {
-        private static string language;
-        public static string Language
-        {
-            get { return language; }
-            set { language = value; }
-        }
+        public static string  Language { get; set; }
     }
 }

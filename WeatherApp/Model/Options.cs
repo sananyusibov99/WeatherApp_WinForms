@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace WeatherApp
 {
-    public class Options
+    public static class Options
     {
-        public string City { get; set; }
-        public string Units { get; set; }
-
-        public Options(string City)
-        {
-            this.City = City;
-        }
-
-        public Options() { }
+        //public static string City { get; set; } = "Baku";
+        public static string Units { get; set; } = "metric";
     }
 }
