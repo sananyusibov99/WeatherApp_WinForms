@@ -15,15 +15,16 @@ namespace WeatherApp
         public static string City { get; set; }
         public static string Description { get; set; }
         public static float Temperature { get; set; }
-        public static int MinTemperature { get; set; }
-        public static int MaxTemperature { get; set; }
-        public static string Speed { get; set; }
-        public static string Clouds { get; set; }
-        public static string Pressure { get; set; }
-        public static string Humidity { get; set; }
+        public static float MinTemperature { get; set; }
+        public static float MaxTemperature { get; set; }
+        public static float Speed { get; set; }
+        public static int Clouds { get; set; }
+        public static float Pressure { get; set; }
+        public static float Humidity { get; set; }
         public static string Picture { get; set; }
         public static string Date { get; set; }
 
+        public static int Index { get; set; }
         public static int IndexFiveDays { get; set; }
         public static int Cnt { get; set; }
     }
