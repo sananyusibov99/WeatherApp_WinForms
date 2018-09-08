@@ -21,8 +21,7 @@ namespace WeatherApp
 
             var presenter = new WeatherPresenter();
             FormWeatherApp view = new FormWeatherApp(presenter);
-            Options optionsModel = new Options();
-            WeatherPresenter weatherPresenter = new WeatherPresenter(view, optionsModel);
+            WeatherPresenter weatherPresenter = new WeatherPresenter(view);
             weatherPresenter.StartApplication();
             
             //Application.Run(new FormWeatherApp());

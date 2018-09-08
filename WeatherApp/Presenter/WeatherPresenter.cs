@@ -13,22 +13,22 @@ namespace WeatherApp.Presenter
     public class WeatherPresenter : IWeatherAppPresenter
     {
         private readonly FormWeatherApp _viewWeatherApp;
-        private Options _optionsModel;
+
+
 
         //public WeatherPresenter(FormWeatherApp viewWeatherApp)
         //{
         //    _viewWeatherApp = viewWeatherApp;
         //}
 
-        public WeatherPresenter(FormWeatherApp view, Options optionsModel)
+        public WeatherPresenter(FormWeatherApp view)
         {
             _viewWeatherApp = view;
-            _optionsModel = optionsModel;
         }
 
         public WeatherPresenter()
         {
-                
+
         }
 
         public void StartApplication()
@@ -46,6 +46,86 @@ namespace WeatherApp.Presenter
 
                 return (string)data["city"];
             }
+        }
+
+        public JObject WeatherSet()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                var result = wc.DownloadString($"http://api.openweathermap.org/data/2.5/weather?q={WeatherModel.City}&mode=json&APPID=44e4a0d8152c6a9538668064c5c591dc&units={Options.Units}");
+                var data = JObject.Parse(result);
+                return data;
+            }
+        }
+
+        public JObject ForecastSet()
+        {
+            using (WebClient wc = new WebClient())
+            {
+                wc.Encoding = Encoding.UTF8;
+                var result = wc.DownloadString($"http://api.openweathermap.org/data/2.5/forecast?q={WeatherModel.City}&mode=json&APPID=44e4a0d8152c6a9538668064c5c591dc&units={Options.Units}");
+                var data = JObject.Parse(result);
+                return data;
+            }
+        }
+
+        public void TodayWeatherSet()
+        {
+            var data = WeatherSet();
+            WeatherModel.City = (string)data["name"];
+            WeatherModel.Description = (string)data["weather"][0]["description"];
+            WeatherModel.Temperature = (string)data["main"]["temp"];
+            WeatherModel.MinTemperature = (int)data["main"]["temp_min"];
+            WeatherModel.MaxTemperature = (int)data["main"]["temp_max"];
+            WeatherModel.Speed = (string)data["wind"]["speed"];
+            WeatherModel.Clouds = (string)data["clouds"]["all"];
+            WeatherModel.Pressure = (string)data["main"]["pressure"];
+            WeatherModel.Humidity = (string)data["main"]["humidity"];
+            WeatherModel.Picture = (string)data["weather"][0]["icon"];
+        }
+
+        public void TommorowWeatherSet()
+        {
+            var data = ForecastSet();
+            WeatherModel.City = (string)data["city"]["name"];
+            for (int i = 6; i < 13; i++) // Подсчет средней минимальной и максимальной погоды
+            {
+                if ((int)data["list"][i]["main"]["temp_min"] < WeatherModel.MinTemperature)
+                {
+                    WeatherModel.MinTemperature = (int)data["list"][i]["main"]["temp_min"];
+                }
+                if ((int)data["list"][i]["main"]["temp_max"] > WeatherModel.MaxTemperature)
+                {
+                    WeatherModel.MaxTemperature = (int)data["list"][i]["main"]["temp_max"];
+                }
+            }
+            WeatherModel.Description = (string)data["list"][WeatherModel.TommorowShowIndex]["weather"][0]["description"];
+            WeatherModel.Temperature = (string)data["list"][WeatherModel.TommorowShowIndex]["main"]["temp"];
+            WeatherModel.Speed = (string)data["list"][WeatherModel.TommorowShowIndex]["wind"]["speed"];
+            WeatherModel.Clouds = (string)data["list"][WeatherModel.TommorowShowIndex]["clouds"]["all"];
+            WeatherModel.Pressure = (string)data["list"][WeatherModel.TommorowShowIndex]["main"]["pressure"];
+            WeatherModel.Humidity = (string)data["list"][WeatherModel.TommorowShowIndex]["main"]["humidity"];
+            WeatherModel.Date = (string)data["list"][WeatherModel.TommorowShowIndex]["dt_txt"];
+            WeatherModel.Picture = (string)data["list"][WeatherModel.TommorowShowIndex]["weather"][0]["icon"];
+        }
+
+        public void FiveDaysWeatherSet()
+        {
+            var data = ForecastSet();
+            WeatherModel.City = (string)data["city"]["name"];
+            WeatherModel.Description = (string)data["list"][WeatherModel.FiveDaysShowIndex]["weather"][0]["description"];
+            WeatherModel.Picture = (string)data["list"][WeatherModel.FiveDaysShowIndex]["weather"][0]["icon"];
+            WeatherModel.Cnt = (int)data["cnt"];
+            WeatherModel.Date = (string)data["list"][WeatherModel.IndexFiveDays]["dt_txt"];
+            WeatherModel.Temperature = (string)data["list"][WeatherModel.IndexFiveDays]["main"]["temp"];
+            WeatherModel.Speed = (string)data["list"][WeatherModel.IndexFiveDays]["wind"]["speed"];
+            WeatherModel.Clouds = (string)data["list"][WeatherModel.IndexFiveDays]["clouds"]["all"];
+            WeatherModel.Pressure = (string)data["list"][WeatherModel.IndexFiveDays]["main"]["pressure"];
+            WeatherModel.Humidity = (string)data["list"][WeatherModel.IndexFiveDays]["main"]["humidity"];
+            WeatherModel.MinTemperature = (int)data["list"][WeatherModel.IndexFiveDays]["main"]["temp_min"];
+            WeatherModel.MaxTemperature = (int)data["list"][WeatherModel.IndexFiveDays]["main"]["temp_max"];
+
         }
     }
 }
