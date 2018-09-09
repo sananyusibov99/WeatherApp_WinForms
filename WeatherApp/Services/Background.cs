@@ -4,10 +4,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeatherApp.Services
+namespace WeatherApp
 {
-   public static class Backgrounds
+    public static class Background
     {
+        public static System.Drawing.Bitmap ChangeBackground()
+        {
+            foreach (var item in Thunderstorm)
+            {
+                if (item == WeatherModel.Description)
+                {
+                    return Properties.Resources.Thunder;
+                }
+            }
+            foreach (var item in Rain)
+            {
+                if (item == WeatherModel.Description)
+                {
+                    return Properties.Resources.Rain;
+                }
+            }
+            foreach (var item in Snow)
+            {
+                if (item == WeatherModel.Description)
+                {
+                    return Properties.Resources.Snow;
+                }
+            }
+            foreach (var item in Mist)
+            {
+                if (item == WeatherModel.Description)
+                {
+                    return Properties.Resources.Fog;
+                }
+            }
+            foreach (var item in Clouds)
+            {
+                if (item == WeatherModel.Description)
+                {
+                    return Properties.Resources.Clouds;
+                }
+            }
+            return Properties.Resources.Clear;
+            // (string)data["weather"][0]["description"]
+        }
+
         public static List<string> Thunderstorm = new List<string>
             {
                 "thunderstorm with light rain",
@@ -81,6 +122,5 @@ namespace WeatherApp.Services
             "broken clouds",
             "overcast clouds",
         };
-
     }
 }

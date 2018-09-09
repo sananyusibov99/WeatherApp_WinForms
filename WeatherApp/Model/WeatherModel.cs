@@ -8,6 +8,8 @@ namespace WeatherApp
 {
     public static class WeatherModel
     {
+        public static int Last = 0;
+
         public static int TommorowShowIndex { get; set; } = 5;
         public static int FiveDaysShowIndex { get; set; } = 1;
         public static int FiveDaysHShowIndex { get; set; } = 1;
