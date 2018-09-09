@@ -52,3 +52,17 @@ C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.
 C:\Users\sanan\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.pdb
 C:\Users\sanan\source\repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.View.FormWeatherApp.resources
 C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms\WeatherApp\obj\Debug\WeatherApp.View.FormWeatherApp.resources
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.csprojAssemblyReference.cache
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.FormSettings.resources
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.View.FormWeatherApp.resources
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.Properties.Resources.resources
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.csproj.GenerateResource.cache
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.csproj.CoreCompileInputs.cache
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.exe
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.pdb
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\bin\Debug\WeatherApp.exe.config
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\bin\Debug\WeatherApp.exe
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\bin\Debug\WeatherApp.pdb
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Usib_uf00\Source\Repos\WeatherApp_WinForms2\WeatherApp\obj\Debug\WeatherApp.csproj.CopyComplete

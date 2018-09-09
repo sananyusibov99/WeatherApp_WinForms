@@ -9,7 +9,6 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WeatherApp.Services;
 using WeatherApp.Presenter;
 
 namespace WeatherApp.View
@@ -17,7 +16,6 @@ namespace WeatherApp.View
     public partial class FormWeatherApp : Form
     {
         enum LastFunc { TODAY = 1, TOMORROW, FIVE, FIVEH }
-        int Last = 0;
         public static int test = 0, labelindex = 0;
         static string sub = null;
         static int iter = 0;
@@ -38,20 +36,20 @@ namespace WeatherApp.View
             //WeatherPresenter weatherPresenter = new WeatherPresenter();
         }
 
-        // Единицы измерения
+        // Единицы измерения +
         public void RadioButtonsUnitSet()
         {
             if (radioButtonCelsius.Checked)
             {
-                Options.Units = "metric";
+                WeatherPresenter.UnitsSet("metric");
             }
             else if (radioButtonFahrenheit.Checked)
             {
-                Options.Units = "imperial";
+                WeatherPresenter.UnitsSet("imperial");
             }
             else if (radioButtonKelvin.Checked)
             {
-                Options.Units = "default";
+                WeatherPresenter.UnitsSet("default");
             }
         }
 
@@ -112,7 +110,7 @@ namespace WeatherApp.View
             txtResult.Text += "Pressure: " + WeatherModel.Pressure + " hPa\n";
             txtResult.Text += "Humidity: " + WeatherModel.Humidity + " %\n";
 
-            ChangeBackground();
+            this.BackgroundImage = Background.ChangeBackground();
             string picture = WeatherModel.Picture;
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
         }
@@ -128,8 +126,9 @@ namespace WeatherApp.View
             txtResult.Text += "Pressure: " + WeatherModel.Pressure + " hPa\n";
             txtResult.Text += "Humidity: " + WeatherModel.Humidity + " %\n";
             txtResult.Text += "Date: " + WeatherModel.Date + "\n\n";
+                        this.BackgroundImage = Background.ChangeBackground();
 
-            ChangeBackground(WeatherModel.TommorowShowIndex);
+           // ChangeBackground(WeatherModel.TommorowShowIndex);
             string picture = WeatherModel.Picture;
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
         }
@@ -205,7 +204,9 @@ namespace WeatherApp.View
             txtResult.Text += "Pressure: " + Math.Round(pressure / iter, 0) + " hPa\n";
             txtResult.Text += "Humidity: " + Math.Round(humidity / iter, 0) + " %\n\n";
 
-            ChangeBackground(WeatherModel.FiveDaysShowIndex);
+            this.BackgroundImage = Background.ChangeBackground();
+
+           // ChangeBackground(WeatherModel.FiveDaysShowIndex);
             string picture = WeatherModel.Picture;
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
             iter = 0;
@@ -267,7 +268,9 @@ namespace WeatherApp.View
                 }
                 labelindex++;
             } while (sub == $"{DateTime.Now.AddDays(WeatherModel.FiveDaysHShowIndex - 1).ToString("yyyy-MM-dd")}");
-            ChangeBackground(WeatherModel.FiveDaysHShowIndex);
+            this.BackgroundImage = Background.ChangeBackground();
+
+            //ChangeBackground(WeatherModel.FiveDaysHShowIndex);
             string picture = WeatherModel.Picture;
             pictureBox1.Load($"http://openweathermap.org/img/w/{picture}.png");
         }
@@ -281,13 +284,11 @@ namespace WeatherApp.View
         private void BtnTodayWeather_Click(object sender, EventArgs e)
         {
             Size = new System.Drawing.Size(500, 400);
-
             txtRes.Text = "";
-
             btnNext.Hide();
             btnPrev.Hide();
 
-            Last = (int)LastFunc.TODAY;
+            WeatherModel.Last =(int)LastFunc.TODAY;
             WeatherModel.TommorowShowIndex = 5; // 5-12
             WeatherModel.FiveDaysShowIndex = 1; // 1-5
             WeatherModel.FiveDaysHShowIndex = 1; // 1-5
@@ -314,7 +315,9 @@ namespace WeatherApp.View
 
             try
             {
-                TranslateResult();
+                txtResult.Text = Translating.TranslateResult(txtResult.Text);
+                txtRes.Text = Translating.TranslateResult(txtRes.Text);
+                txtCityDay.Text = Translating.TranslateResult(txtCityDay.Text);
             }
             catch { }
         }
@@ -326,7 +329,7 @@ namespace WeatherApp.View
             txtRes.Text = "";
             btnNext.Show();
             btnPrev.Show();
-            Last = (int)LastFunc.TOMORROW;
+            WeatherModel.Last = (int)LastFunc.TOMORROW;
             WeatherModel.FiveDaysShowIndex = 1; // 1-5
             WeatherModel.FiveDaysHShowIndex = 1; // 1-5
             WeatherModel.IndexFiveDays = 0;
@@ -353,7 +356,9 @@ namespace WeatherApp.View
 
             try
             {
-                TranslateResult();
+                txtResult.Text = Translating.TranslateResult(txtResult.Text);
+                txtRes.Text = Translating.TranslateResult(txtRes.Text);
+                txtCityDay.Text = Translating.TranslateResult(txtCityDay.Text);
             }
             catch { }
         }
@@ -364,7 +369,7 @@ namespace WeatherApp.View
             txtRes.Text = "";
             btnNext.Show();
             btnPrev.Show();
-            Last = (int)LastFunc.FIVE;
+            WeatherModel.Last = (int)LastFunc.FIVE;
             WeatherModel.TommorowShowIndex = 5;
             WeatherModel.FiveDaysHShowIndex = 1;
             WeatherModel.Index = 0;
@@ -393,7 +398,9 @@ namespace WeatherApp.View
 
                 try
                 {
-                    TranslateResult();
+                    txtResult.Text = Translating.TranslateResult(txtResult.Text);
+                    txtRes.Text = Translating.TranslateResult(txtRes.Text);
+                    txtCityDay.Text = Translating.TranslateResult(txtCityDay.Text);
                 }
                 catch { }
             }
@@ -404,7 +411,7 @@ namespace WeatherApp.View
             Size = new System.Drawing.Size(600, 630);
             btnNext.Show();
             btnPrev.Show();
-            Last = (int)LastFunc.FIVEH;
+            WeatherModel.Last = (int)LastFunc.FIVEH;
             WeatherModel.TommorowShowIndex = 5; // 5-12
             WeatherModel.FiveDaysShowIndex = 1; // 1-5
             WeatherModel.IndexFiveDays = 0;
@@ -434,13 +441,15 @@ namespace WeatherApp.View
 
                 try
                 {
-                    TranslateResult();
+                    txtResult.Text = Translating.TranslateResult(txtResult.Text);
+                    txtRes.Text = Translating.TranslateResult(txtRes.Text);
+                    txtCityDay.Text = Translating.TranslateResult(txtCityDay.Text);
                 }
                 catch { }
             }
         }
 
-        // Меню
+        // Меню +
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -454,7 +463,7 @@ namespace WeatherApp.View
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-             if (Last == 2)
+             if (WeatherModel.Last == 2)
             {
                 if (WeatherModel.TommorowShowIndex < 13)
                 {
@@ -462,7 +471,7 @@ namespace WeatherApp.View
                     BtnTomorrowWeather_Click(sender, e);
                 }
             }
-            else if (Last == 3)
+            else if (WeatherModel.Last == 3)
             {
                 if (WeatherModel.FiveDaysShowIndex < 6)
                 {
@@ -470,7 +479,7 @@ namespace WeatherApp.View
                     BtnFiveDays_Click(sender, e);
                 }
             }
-            else if (Last == 4)
+            else if (WeatherModel.Last == 4)
             {
                 if (WeatherModel.FiveDaysHShowIndex < 6)
                 {
@@ -482,7 +491,7 @@ namespace WeatherApp.View
 
         private void BtnPrev_Click(object sender, EventArgs e)
         {
-            if (Last == 2)
+            if (WeatherModel.Last == 2)
             {
                 if (WeatherModel.TommorowShowIndex > 5)
                 {
@@ -490,7 +499,7 @@ namespace WeatherApp.View
                     BtnTomorrowWeather_Click(sender, e);
                 }
             }
-            else if (Last == 3)
+            else if (WeatherModel.Last == 3)
             {
                 if (WeatherModel.FiveDaysShowIndex > 1)
                 {
@@ -498,7 +507,7 @@ namespace WeatherApp.View
                     BtnFiveDays_Click(sender, e);
                 }
             }
-            else if (Last == 4)
+            else if (WeatherModel.Last == 4)
             {
                 if (WeatherModel.FiveDaysHShowIndex > 1)
                 {
@@ -513,103 +522,7 @@ namespace WeatherApp.View
             Close();
         }
 
-        // Background
-        public void ChangeBackground()
-        {
-            foreach (var item in Backgrounds.Thunderstorm)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Thunder;
-                    return;
-                }
-            }
-            foreach (var item in Backgrounds.Rain)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Rain;
-                    return;
-                }
-            }
-            foreach (var item in Backgrounds.Snow)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Snow;
-                    return;
-                }
-            }
-            foreach (var item in Backgrounds.Mist)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Fog;
-                    return;
-                }
-            }
-            foreach (var item in Backgrounds.Clouds)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Clouds;
-                    return;
-                }
-            }
-            this.BackgroundImage = Properties.Resources.Clear;
-            // (string)data["weather"][0]["description"]
-        }
-
-        public void ChangeBackground(int Index)
-        {
-            foreach (var item in Backgrounds.Thunderstorm)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Thunder;
-                    return;
-                }
-            }
-            foreach (var item in Backgrounds.Rain)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Rain;
-                    return;
-                }
-            }
-            foreach (var item in Backgrounds.Snow)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Snow;
-                    return;
-                }
-            }
-            foreach (var item in Backgrounds.Mist)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Fog;
-                    return;
-                }
-            }
-            foreach (var item in Backgrounds.Clouds)
-            {
-                if (item == WeatherModel.Description)
-                {
-                    this.BackgroundImage = Properties.Resources.Clouds;
-                    return;
-                }
-            }
-            this.BackgroundImage = Properties.Resources.Clear;
-            //(string)data["list"][Index]["weather"][0]["description"]
-        }
-        
-        // ПЕРЕВОДЧИК
-        static List<string> buttons = new List<string>();
-
-        // Замена переведенных кнопок
+        // Замена переведенных кнопок +
         public void TextChange(List<string> texts)
         {
             settingsToolStripMenuItem.Text = texts[0];
@@ -627,28 +540,9 @@ namespace WeatherApp.View
             btnPrev.Text = texts[12];
         }
 
-        // Перевод запросов
-        public void TranslateResult()
-        {
-            using (WebClient wc = new WebClient())
-            {
-                wc.Encoding = Encoding.UTF8;
-                var res = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={txtResult.Text}&lang={Languages.Language}");
-                var dat = JObject.Parse(res);
-                txtResult.Text = (string)dat["text"][0];
+        // Перевод кнопок + 
+        static List<string> buttons = new List<string>();
 
-                res = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={txtCityDay.Text}&lang={Languages.Language}");
-                dat = JObject.Parse(res);
-                txtCityDay.Text = (string)dat["text"][0];
-
-                res = wc.DownloadString($"https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180519T085039Z.2c50b69f58c34887.7d37dc64e412a4142605130cdb6705d8e840df03&%20&text={txtRes.Text}&lang={Languages.Language}");
-                dat = JObject.Parse(res);
-                txtRes.Text = (string)dat["text"][0];
-
-            }
-        }
-       
-        // Перевод кнопок
         public void WebClient()
         {
             using (WebClient wc = new WebClient())

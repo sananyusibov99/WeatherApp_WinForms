@@ -48,6 +48,13 @@ namespace WeatherApp.Presenter
             }
         }
 
+
+
+        public void UnitsSet(string Units)
+        {
+            Options.Units = Units;
+        }
+
         public JObject WeatherSet()
         {
             using (WebClient wc = new WebClient())
