@@ -1,0 +1,6 @@
+# Visual Studio build output and local settings
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
